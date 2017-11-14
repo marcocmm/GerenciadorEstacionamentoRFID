@@ -22,9 +22,14 @@ public class ControleFrota {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+       
         
         MotoristasController mc1 = new MotoristasController();
-        mc1.excluir(4);
+        List<Motoristas> lista = mc1.listarId(1);
+        for (Motoristas motoristas : lista) {
+            System.out.println("Teste ID"+motoristas.getNome());
+        }
+        
     }
     
 }

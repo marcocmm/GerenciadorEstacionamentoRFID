@@ -7,6 +7,7 @@ package Controller;
 
 import DAO.DAOMotorista;
 import Entidades.Motoristas;
+import java.util.List;
 
 /**
  *
@@ -21,10 +22,11 @@ public class MotoristasController {
     }
     
     public void cadastrar (String nome, String cpf, String rfid){
-        Motoristas m1 = new Motoristas();
-        m1.setNome(nome);
-        m1.setCpf(cpf);
-        m1.setRFIDMotorista(rfid);
+        Motoristas m1 = new Motoristas(nome, cpf, rfid);
+//        m1.setNome(nome);
+//        m1.setCpf(cpf);
+//        m1.setRFIDMotorista(rfid);
+
         try {
             daomot.inserir(m1);
         } catch (Exception e) {
@@ -41,14 +43,20 @@ public class MotoristasController {
         }
     }
     public void alterar (Integer id, String nome, String cpf, String rfid){
-        Motoristas m1 = new Motoristas(id);
-        m1.setNome(nome);
-        m1.setCpf(cpf);
-        m1.setRFIDMotorista(rfid);
+        Motoristas m1 = new Motoristas(id, nome, cpf, rfid);
         try {
         daomot.atualizar(m1);
         } catch (Exception e) {
             System.out.println("Erro "+e);
         }
+    }
+    public List<Motoristas> listarId (Integer id){
+        List<Motoristas> lista = null;
+        try {            
+            lista = daomot.listById(id);
+        } catch (Exception e) {
+            System.out.println("Erro "+e);
+        }
+        return lista;
     }
 }

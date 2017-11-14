@@ -21,7 +21,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author a1602020
+ * @author marco
  */
 @Entity
 @Table(name = "Motoristas")
@@ -44,7 +44,7 @@ public class Motoristas implements Serializable {
     @Basic(optional = false)
     @Column(name = "RFIDMotorista")
     private String rFIDMotorista;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "motoristasidMotorista")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "motoristas")
     private List<Logs> logsList;
 
     public Motoristas() {
@@ -54,6 +54,13 @@ public class Motoristas implements Serializable {
         this.idMotorista = idMotorista;
     }
 
+    
+    public Motoristas(String nome, String cpf, String rFIDMotorista) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.rFIDMotorista = rFIDMotorista;
+    }
+    
     public Motoristas(Integer idMotorista, String nome, String cpf, String rFIDMotorista) {
         this.idMotorista = idMotorista;
         this.nome = nome;
@@ -63,6 +70,10 @@ public class Motoristas implements Serializable {
 
     public Integer getIdMotorista() {
         return idMotorista;
+    }
+
+    public void setIdMotorista(Integer idMotorista) {
+        this.idMotorista = idMotorista;
     }
 
     public String getNome() {

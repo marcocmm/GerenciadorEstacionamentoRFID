@@ -6,21 +6,22 @@
 package Entidades;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
  *
- * @author a1602020
+ * @author marco
  */
 @Entity
 @Table(name = "Destinos")
@@ -43,12 +44,8 @@ public class Destinos implements Serializable {
     @Basic(optional = false)
     @Column(name = "Nome")
     private String nome;
-    @Basic(optional = false)
-    @Column(name = "Logs_Motoristas_idMotorista")
-    private int logsMotoristasidMotorista;
-    @JoinColumn(name = "Logs_idLog", referencedColumnName = "idLog")
-    @ManyToOne(optional = false)
-    private Logs logsidLog;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "destinos")
+    private List<Logs> logsList;
 
     public Destinos() {
     }
@@ -57,10 +54,9 @@ public class Destinos implements Serializable {
         this.idDestino = idDestino;
     }
 
-    public Destinos(Integer idDestino, String nome, int logsMotoristasidMotorista) {
+    public Destinos(Integer idDestino, String nome) {
         this.idDestino = idDestino;
         this.nome = nome;
-        this.logsMotoristasidMotorista = logsMotoristasidMotorista;
     }
 
     public Integer getIdDestino() {
@@ -103,20 +99,12 @@ public class Destinos implements Serializable {
         this.nome = nome;
     }
 
-    public int getLogsMotoristasidMotorista() {
-        return logsMotoristasidMotorista;
+    public List<Logs> getLogsList() {
+        return logsList;
     }
 
-    public void setLogsMotoristasidMotorista(int logsMotoristasidMotorista) {
-        this.logsMotoristasidMotorista = logsMotoristasidMotorista;
-    }
-
-    public Logs getLogsidLog() {
-        return logsidLog;
-    }
-
-    public void setLogsidLog(Logs logsidLog) {
-        this.logsidLog = logsidLog;
+    public void setLogsList(List<Logs> logsList) {
+        this.logsList = logsList;
     }
 
     @Override

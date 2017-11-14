@@ -21,7 +21,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author a1602020
+ * @author marco
  */
 @Entity
 @Table(name = "Veiculos")
@@ -47,7 +47,7 @@ public class Veiculos implements Serializable {
     @Basic(optional = false)
     @Column(name = "RFIDVeiculo")
     private String rFIDVeiculo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "veiculosidVeiculo")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "veiculos")
     private List<Logs> logsList;
 
     public Veiculos() {

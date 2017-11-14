@@ -7,26 +7,21 @@ package Entidades;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
  *
- * @author a1602020
+ * @author marco
  */
 @Entity
 @Table(name = "Logs")
@@ -35,42 +30,44 @@ import javax.persistence.TemporalType;
 public class Logs implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "idLog")
-    private Integer idLog;
+    @EmbeddedId
+    protected LogsPK logsPK;
     @Basic(optional = false)
     @Column(name = "Data")
     @Temporal(TemporalType.DATE)
     private Date data;
-    @JoinColumn(name = "Motoristas_idMotorista", referencedColumnName = "idMotorista")
+    @JoinColumn(name = "Destinos_idDestino", referencedColumnName = "idDestino", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Motoristas motoristasidMotorista;
-    @JoinColumn(name = "Veiculos_idVeiculo", referencedColumnName = "idVeiculo")
+    private Destinos destinos;
+    @JoinColumn(name = "Motoristas_idMotorista", referencedColumnName = "idMotorista", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Veiculos veiculosidVeiculo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "logsidLog")
-    private List<Destinos> destinosList;
+    private Motoristas motoristas;
+    @JoinColumn(name = "Veiculos_idVeiculo", referencedColumnName = "idVeiculo", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Veiculos veiculos;
 
     public Logs() {
     }
 
-    public Logs(Integer idLog) {
-        this.idLog = idLog;
+    public Logs(LogsPK logsPK) {
+        this.logsPK = logsPK;
     }
 
-    public Logs(Integer idLog, Date data) {
-        this.idLog = idLog;
+    public Logs(LogsPK logsPK, Date data) {
+        this.logsPK = logsPK;
         this.data = data;
     }
 
-    public Integer getIdLog() {
-        return idLog;
+    public Logs(int idLog, int motoristasidMotorista, int veiculosidVeiculo, int destinosidDestino) {
+        this.logsPK = new LogsPK(idLog, motoristasidMotorista, veiculosidVeiculo, destinosidDestino);
     }
 
-    public void setIdLog(Integer idLog) {
-        this.idLog = idLog;
+    public LogsPK getLogsPK() {
+        return logsPK;
+    }
+
+    public void setLogsPK(LogsPK logsPK) {
+        this.logsPK = logsPK;
     }
 
     public Date getData() {
@@ -81,34 +78,34 @@ public class Logs implements Serializable {
         this.data = data;
     }
 
-    public Motoristas getMotoristasidMotorista() {
-        return motoristasidMotorista;
+    public Destinos getDestinos() {
+        return destinos;
     }
 
-    public void setMotoristasidMotorista(Motoristas motoristasidMotorista) {
-        this.motoristasidMotorista = motoristasidMotorista;
+    public void setDestinos(Destinos destinos) {
+        this.destinos = destinos;
     }
 
-    public Veiculos getVeiculosidVeiculo() {
-        return veiculosidVeiculo;
+    public Motoristas getMotoristas() {
+        return motoristas;
     }
 
-    public void setVeiculosidVeiculo(Veiculos veiculosidVeiculo) {
-        this.veiculosidVeiculo = veiculosidVeiculo;
+    public void setMotoristas(Motoristas motoristas) {
+        this.motoristas = motoristas;
     }
 
-    public List<Destinos> getDestinosList() {
-        return destinosList;
+    public Veiculos getVeiculos() {
+        return veiculos;
     }
 
-    public void setDestinosList(List<Destinos> destinosList) {
-        this.destinosList = destinosList;
+    public void setVeiculos(Veiculos veiculos) {
+        this.veiculos = veiculos;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idLog != null ? idLog.hashCode() : 0);
+        hash += (logsPK != null ? logsPK.hashCode() : 0);
         return hash;
     }
 
@@ -119,7 +116,7 @@ public class Logs implements Serializable {
             return false;
         }
         Logs other = (Logs) object;
-        if ((this.idLog == null && other.idLog != null) || (this.idLog != null && !this.idLog.equals(other.idLog))) {
+        if ((this.logsPK == null && other.logsPK != null) || (this.logsPK != null && !this.logsPK.equals(other.logsPK))) {
             return false;
         }
         return true;
@@ -127,7 +124,7 @@ public class Logs implements Serializable {
 
     @Override
     public String toString() {
-        return "Entidades.Logs[ idLog=" + idLog + " ]";
+        return "Entidades.Logs[ logsPK=" + logsPK + " ]";
     }
     
 }
