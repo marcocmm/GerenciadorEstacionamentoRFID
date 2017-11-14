@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controler;
+package Controller;
 
 import DAO.DAOMotorista;
 import Entidades.Motoristas;
@@ -12,11 +12,11 @@ import Entidades.Motoristas;
  *
  * @author a1602020
  */
-public class MotoristasControler {
+public class MotoristasController {
 
     DAOMotorista daomot;
 
-    public MotoristasControler() {
+    public MotoristasController() {
         daomot = new DAOMotorista();
     }
     

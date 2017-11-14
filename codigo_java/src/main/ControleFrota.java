@@ -5,7 +5,7 @@
  */
 package main;
 
-import Controler.MotoristasControler;
+import Controller.MotoristasController;
 import DAO.DAOMotorista;
 import Entidades.Motoristas;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class ControleFrota {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        MotoristasControler mc1 = new MotoristasControler();
+        MotoristasController mc1 = new MotoristasController();
         mc1.excluir(4);
     }
     
