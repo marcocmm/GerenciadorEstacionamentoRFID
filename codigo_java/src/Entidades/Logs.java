@@ -49,6 +49,10 @@ public class Logs implements Serializable {
     public Logs() {
     }
 
+    public Logs(Date data) {
+        this.data = data;
+    }
+
     public Logs(LogsPK logsPK) {
         this.logsPK = logsPK;
     }
@@ -56,6 +60,13 @@ public class Logs implements Serializable {
     public Logs(LogsPK logsPK, Date data) {
         this.logsPK = logsPK;
         this.data = data;
+    }
+
+    public Logs(Date data, Destinos destinos, Motoristas motoristas, Veiculos veiculos) {
+        this.data = data;
+        this.destinos = destinos;
+        this.motoristas = motoristas;
+        this.veiculos = veiculos;
     }
 
     public Logs(int idLog, int motoristasidMotorista, int veiculosidVeiculo, int destinosidDestino) {

@@ -50,6 +50,17 @@ public class Destinos implements Serializable {
     public Destinos() {
     }
 
+    public Destinos(String nome) {
+        this.nome = nome;
+    }
+
+    public Destinos(String cep, String endereco, String numero, String nome) {
+        this.cep = cep;
+        this.endereco = endereco;
+        this.numero = numero;
+        this.nome = nome;
+    }   
+    
     public Destinos(Integer idDestino) {
         this.idDestino = idDestino;
     }
@@ -57,6 +68,10 @@ public class Destinos implements Serializable {
     public Destinos(Integer idDestino, String nome) {
         this.idDestino = idDestino;
         this.nome = nome;
+    }
+
+    public Destinos(Integer id, String cep, String endereco, String numero, String nome) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public Integer getIdDestino() {
