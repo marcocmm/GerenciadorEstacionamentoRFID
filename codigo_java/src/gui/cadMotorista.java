@@ -5,6 +5,8 @@
  */
 package gui;
 
+import javax.swing.*;
+
 /**
  *
  * @author a1602020
@@ -15,10 +17,47 @@ public class cadMotorista extends javax.swing.JFrame {
      * Creates new form cadMotorista
      */
     public cadMotorista() {
-        initComponents();
+        initComponents();        
+        setTitle("Cadastro de Motoristas");
+        setSize(250, 260);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
-        setTitle("Controle de Frota");
-        setSize(300, 300);
+        JLabel labelNome = new JLabel("Nome");
+        labelNome.setBounds(20, 10, 100, 20);
+        add(labelNome);
+        
+        JTextField tfNome = new JTextField();
+        tfNome.setSize(210,25);
+        tfNome.setLocation(20, 30);
+        add(tfNome);
+        
+        JLabel labelCPF = new JLabel("CPF");
+        labelCPF.setBounds(20, 60, 100, 20);
+        add(labelCPF);
+        
+        JTextField tfCPF = new JTextField();
+        tfCPF.setSize(150,25);
+        tfCPF.setLocation(20, 80);
+        add(tfCPF);
+        
+        JLabel labelRFID = new JLabel("RFID");
+        labelRFID.setBounds(20, 110, 100, 20);
+        add(labelRFID);
+        
+        JTextField tfRFID = new JTextField();
+        tfRFID.setSize(100,25);
+        tfRFID.setLocation(20, 130);
+        add(tfRFID);
+        
+        JButton buttonSave = new JButton("Salvar");
+        buttonSave.setSize(100,30);
+        buttonSave.setLocation(20, 170);
+        add(buttonSave);
+        
+        JButton buttonCancel = new JButton("Cancelar");
+        buttonCancel.setSize(100,30);
+        buttonCancel.setLocation(130, 170);
+        add(buttonCancel);
     }
 
     /**

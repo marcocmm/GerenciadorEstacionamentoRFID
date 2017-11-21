@@ -8,6 +8,8 @@ package gui;
 import java.awt.Color;
 import javax.swing.*;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.plaf.basic.DefaultMenuLayout;
 
 /**
@@ -24,6 +26,9 @@ public class menuPrincipal extends javax.swing.JFrame {
         setTitle("Controle de Frota");
         setSize(500, 500);
         
+        cadMotorista cm = new cadMotorista();
+        cadDestinos cd = new cadDestinos();
+        cadVeiculo cv = new cadVeiculo();
         // Cria uma barra de menu para o JFrame
         JMenuBar menuBar = new JMenuBar();
         
@@ -38,8 +43,23 @@ public class menuPrincipal extends javax.swing.JFrame {
         
         // Cria e adiciona um item simples para o menu
         JMenuItem cadMot = new JMenuItem("Motoristas");
+        cadMot.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cm.setVisible(true);
+            }
+        });
         JMenuItem cadVei = new JMenuItem("Veículos");
+        cadVei.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cv.setVisible(true);
+            }
+        });
         JMenuItem cadDest = new JMenuItem("Destinos");
+        cadDest.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cd.setVisible(true);
+            }
+        });
         JMenuItem consLogs = new JMenuItem("Logs");
         
         
@@ -55,16 +75,31 @@ public class menuPrincipal extends javax.swing.JFrame {
         JButton buttonMoto = new JButton("A");
         buttonMoto.setSize(70,70);
         buttonMoto.setLocation(15, 15);
+        buttonMoto.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cm.setVisible(true);
+            }
+        });
         add(buttonMoto);
         
         JButton buttonVeic = new JButton("B");
         buttonVeic.setSize(70,70);
         buttonVeic.setLocation(90, 15);
+        buttonVeic.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cv.setVisible(true);
+            }
+        });
         add(buttonVeic);
         
         JButton buttonDest = new JButton("C");
         buttonDest.setSize(70,70);
         buttonDest.setLocation(165, 15);
+        buttonDest.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                cd.setVisible(true);
+            }
+        });
         add(buttonDest);
         
         JButton buttonLog = new JButton("D");

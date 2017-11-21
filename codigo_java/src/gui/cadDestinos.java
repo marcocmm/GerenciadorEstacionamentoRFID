@@ -16,6 +16,9 @@ public class cadDestinos extends javax.swing.JFrame {
      */
     public cadDestinos() {
         initComponents();
+        setTitle("Cadastro de Destinos");
+        setSize(300, 300);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**

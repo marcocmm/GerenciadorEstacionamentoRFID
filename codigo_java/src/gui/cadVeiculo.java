@@ -16,6 +16,9 @@ public class cadVeiculo extends javax.swing.JFrame {
      */
     public cadVeiculo() {
         initComponents();
+        setTitle("Cadastro de Veículos");
+        setSize(300, 300);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
