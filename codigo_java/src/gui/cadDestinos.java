@@ -5,6 +5,10 @@
  */
 package gui;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
 /**
  *
  * @author a1602020
@@ -17,8 +21,54 @@ public class cadDestinos extends javax.swing.JFrame {
     public cadDestinos() {
         initComponents();
         setTitle("Cadastro de Destinos");
-        setSize(300, 300);
+        setSize(270, 310);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
+        JLabel labelNome = new JLabel("Nome");
+        labelNome.setBounds(20, 10, 100, 20);
+        add(labelNome);
+        
+        JTextField tfNome = new JTextField();
+        tfNome.setSize(210,25);
+        tfNome.setLocation(20, 30);
+        add(tfNome);
+        
+        JLabel labelCEP = new JLabel("CEP");
+        labelCEP.setBounds(20, 110, 100, 20);
+        add(labelCEP);
+        
+        JTextField tfCEP = new JTextField();
+        tfCEP.setSize(100,25);
+        tfCEP.setLocation(20, 130);
+        add(tfCEP);
+        
+        JLabel labelEndereco = new JLabel("Endereço");
+        labelEndereco.setBounds(20, 60, 100, 20);
+        add(labelEndereco);
+        
+        JTextField tfEndereco = new JTextField();
+        tfEndereco.setSize(210,25);
+        tfEndereco.setLocation(20, 80);
+        add(tfEndereco);
+        
+        JLabel labelNumero = new JLabel("Número");
+        labelNumero.setBounds(20, 160, 100, 20);
+        add(labelNumero);
+        
+        JTextField tfNumero = new JTextField();
+        tfNumero.setSize(80,25);
+        tfNumero.setLocation(20, 180);
+        add(tfNumero);
+        
+        JButton buttonSave = new JButton("Salvar");
+        buttonSave.setSize(100,30);
+        buttonSave.setLocation(20, 220);
+        add(buttonSave);
+        
+        JButton buttonCancel = new JButton("Cancelar");
+        buttonCancel.setSize(100,30);
+        buttonCancel.setLocation(130, 220);
+        add(buttonCancel);
     }
 
     /**

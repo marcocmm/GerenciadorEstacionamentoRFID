@@ -19,7 +19,7 @@ public class cadMotorista extends javax.swing.JFrame {
     public cadMotorista() {
         initComponents();        
         setTitle("Cadastro de Motoristas");
-        setSize(250, 260);
+        setSize(270, 260);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
         JLabel labelNome = new JLabel("Nome");

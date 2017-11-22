@@ -104,7 +104,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         
         JButton buttonLog = new JButton("D");
         buttonLog.setSize(70,70);
-        buttonLog.setLocation(415, 15);
+        buttonLog.setLocation(400, 15);
         add(buttonLog);
     }
 

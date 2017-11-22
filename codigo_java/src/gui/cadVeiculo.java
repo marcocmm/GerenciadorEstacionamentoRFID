@@ -5,6 +5,10 @@
  */
 package gui;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
 /**
  *
  * @author a1602020
@@ -17,8 +21,54 @@ public class cadVeiculo extends javax.swing.JFrame {
     public cadVeiculo() {
         initComponents();
         setTitle("Cadastro de Veículos");
-        setSize(300, 300);
+        setSize(270, 310);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
+        JLabel labelMarca = new JLabel("Marca");
+        labelMarca.setBounds(20, 10, 100, 20);
+        add(labelMarca);
+        
+        JTextField tfMarca = new JTextField();
+        tfMarca.setSize(210,25);
+        tfMarca.setLocation(20, 30);
+        add(tfMarca);
+        
+        JLabel labelModelo = new JLabel("Modelo");
+        labelModelo.setBounds(20, 60, 100, 20);
+        add(labelModelo);
+        
+        JTextField tfModelo = new JTextField();
+        tfModelo.setSize(150,25);
+        tfModelo.setLocation(20, 80);
+        add(tfModelo);
+        
+        JLabel labelPlaca = new JLabel("Placa");
+        labelPlaca.setBounds(20, 110, 100, 20);
+        add(labelPlaca);
+        
+        JTextField tfPlaca = new JTextField();
+        tfPlaca.setSize(150,25);
+        tfPlaca.setLocation(20, 130);
+        add(tfPlaca);
+        
+        JLabel labelRFID = new JLabel("RFID");
+        labelRFID.setBounds(20, 160, 100, 20);
+        add(labelRFID);
+        
+        JTextField tfRFID = new JTextField();
+        tfRFID.setSize(100,25);
+        tfRFID.setLocation(20, 180);
+        add(tfRFID);
+        
+        JButton buttonSave = new JButton("Salvar");
+        buttonSave.setSize(100,30);
+        buttonSave.setLocation(20, 220);
+        add(buttonSave);
+        
+        JButton buttonCancel = new JButton("Cancelar");
+        buttonCancel.setSize(100,30);
+        buttonCancel.setLocation(130, 220);
+        add(buttonCancel);
     }
 
     /**
