@@ -8,6 +8,7 @@ package main;
 import Controller.MotoristasController;
 import DAO.DAOMotorista;
 import Entidades.Motoristas;
+import gui.menuPrincipal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +23,8 @@ public class ControleFrota {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-       
-        Motoristas motorista = new Motoristas("jao", "123", "321");
-        DAOMotorista dAOMotorista = new DAOMotorista();
-        dAOMotorista.inserir(motorista);
+        menuPrincipal mp = new menuPrincipal();
+        mp.setVisible(true);
         
     }
     
