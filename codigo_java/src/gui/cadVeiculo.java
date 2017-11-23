@@ -21,53 +21,67 @@ public class cadVeiculo extends javax.swing.JFrame {
     public cadVeiculo() {
         initComponents();
         setTitle("Cadastro de Veículos");
-        setSize(270, 310);
+        setSize(250, 355);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
+        JLabel labelBusca = new JLabel("Informe a Placa");
+        labelBusca.setBounds(20, 10, 120, 20);
+        add(labelBusca);
+        
+        JTextField tfBusca = new JTextField();
+        tfBusca.setSize(80,25);
+        tfBusca.setLocation(20, 30);
+        add(tfBusca);
+        
+        JButton buttonBusca = new JButton("Buscar");
+        buttonBusca.setSize(90,30);
+        buttonBusca.setLocation(140, 27);
+        add(buttonBusca);
+        
         JLabel labelMarca = new JLabel("Marca");
-        labelMarca.setBounds(20, 10, 100, 20);
+        labelMarca.setBounds(20, 60, 100, 20);
         add(labelMarca);
         
         JTextField tfMarca = new JTextField();
-        tfMarca.setSize(210,25);
-        tfMarca.setLocation(20, 30);
+        tfMarca.setSize(170,25);
+        tfMarca.setLocation(20, 80);
         add(tfMarca);
         
         JLabel labelModelo = new JLabel("Modelo");
-        labelModelo.setBounds(20, 60, 100, 20);
+        labelModelo.setBounds(20, 110, 100, 20);
         add(labelModelo);
         
         JTextField tfModelo = new JTextField();
         tfModelo.setSize(150,25);
-        tfModelo.setLocation(20, 80);
+        tfModelo.setLocation(20, 130);
         add(tfModelo);
         
         JLabel labelPlaca = new JLabel("Placa");
-        labelPlaca.setBounds(20, 110, 100, 20);
+        labelPlaca.setBounds(20, 160, 100, 20);
         add(labelPlaca);
         
         JTextField tfPlaca = new JTextField();
-        tfPlaca.setSize(150,25);
-        tfPlaca.setLocation(20, 130);
+        tfPlaca.setSize(80,25);
+        tfPlaca.setLocation(20, 180);
         add(tfPlaca);
         
         JLabel labelRFID = new JLabel("RFID");
-        labelRFID.setBounds(20, 160, 100, 20);
+        labelRFID.setBounds(20, 210, 100, 20);
         add(labelRFID);
         
         JTextField tfRFID = new JTextField();
         tfRFID.setSize(100,25);
-        tfRFID.setLocation(20, 180);
+        tfRFID.setLocation(20, 230);
         add(tfRFID);
         
         JButton buttonSave = new JButton("Salvar");
         buttonSave.setSize(100,30);
-        buttonSave.setLocation(20, 220);
+        buttonSave.setLocation(20, 270);
         add(buttonSave);
         
         JButton buttonCancel = new JButton("Cancelar");
         buttonCancel.setSize(100,30);
-        buttonCancel.setLocation(130, 220);
+        buttonCancel.setLocation(130, 270);
         add(buttonCancel);
     }
 
