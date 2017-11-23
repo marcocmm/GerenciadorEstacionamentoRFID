@@ -54,19 +54,20 @@ public class Motoristas implements Serializable {
         this.idMotorista = idMotorista;
     }
 
-    
-    public Motoristas(String nome, String cpf, String rFIDMotorista) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.rFIDMotorista = rFIDMotorista;
-    }
-    
     public Motoristas(Integer idMotorista, String nome, String cpf, String rFIDMotorista) {
         this.idMotorista = idMotorista;
         this.nome = nome;
         this.cpf = cpf;
         this.rFIDMotorista = rFIDMotorista;
     }
+
+    public Motoristas(String nome, String cpf, String rFIDMotorista) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.rFIDMotorista = rFIDMotorista;
+    }
+
+ 
 
     public Integer getIdMotorista() {
         return idMotorista;

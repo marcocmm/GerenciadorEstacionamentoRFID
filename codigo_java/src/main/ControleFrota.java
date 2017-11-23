@@ -23,12 +23,9 @@ public class ControleFrota {
     public static void main(String[] args) {
         // TODO code application logic here
        
-        
-        MotoristasController mc1 = new MotoristasController();
-        List<Motoristas> lista = mc1.listarId(1);
-        for (Motoristas motoristas : lista) {
-            System.out.println("Teste ID "+motoristas.getNome());
-        }
+        Motoristas motorista = new Motoristas("jao", "123", "321");
+        DAOMotorista dAOMotorista = new DAOMotorista();
+        dAOMotorista.inserir(motorista);
         
     }
     

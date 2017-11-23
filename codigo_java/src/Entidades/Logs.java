@@ -9,8 +9,10 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -30,36 +32,43 @@ import javax.persistence.TemporalType;
 public class Logs implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected LogsPK logsPK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "idLog")
+    private Integer idLog;
     @Basic(optional = false)
     @Column(name = "Data")
     @Temporal(TemporalType.DATE)
     private Date data;
-    @JoinColumn(name = "Destinos_idDestino", referencedColumnName = "idDestino", insertable = false, updatable = false)
+    @JoinColumn(name = "Destinos_idDestino", referencedColumnName = "idDestino")
     @ManyToOne(optional = false)
     private Destinos destinos;
-    @JoinColumn(name = "Motoristas_idMotorista", referencedColumnName = "idMotorista", insertable = false, updatable = false)
+    @JoinColumn(name = "Motoristas_idMotorista", referencedColumnName = "idMotorista")
     @ManyToOne(optional = false)
     private Motoristas motoristas;
-    @JoinColumn(name = "Veiculos_idVeiculo", referencedColumnName = "idVeiculo", insertable = false, updatable = false)
+    @JoinColumn(name = "Veiculos_idVeiculo", referencedColumnName = "idVeiculo")
     @ManyToOne(optional = false)
     private Veiculos veiculos;
 
     public Logs() {
     }
 
-    public Logs(Date data) {
+    public Logs(Integer idLog) {
+        this.idLog = idLog;
+    }
+
+    public Logs(Integer idLog, Date data) {
+        this.idLog = idLog;
         this.data = data;
     }
 
-    public Logs(LogsPK logsPK) {
-        this.logsPK = logsPK;
-    }
-
-    public Logs(LogsPK logsPK, Date data) {
-        this.logsPK = logsPK;
+    public Logs(int idLog, Date data, Destinos destinos, Motoristas motoristas, Veiculos veiculos) {
+        this.idLog = idLog;
         this.data = data;
+        this.destinos = destinos;
+        this.motoristas = motoristas;
+        this.veiculos = veiculos;
     }
 
     public Logs(Date data, Destinos destinos, Motoristas motoristas, Veiculos veiculos) {
@@ -69,16 +78,25 @@ public class Logs implements Serializable {
         this.veiculos = veiculos;
     }
 
-    public Logs(int idLog, int motoristasidMotorista, int veiculosidVeiculo, int destinosidDestino) {
-        this.logsPK = new LogsPK(idLog, motoristasidMotorista, veiculosidVeiculo, destinosidDestino);
+    public Logs(Date data) {
+        this.data = data;
     }
 
-    public LogsPK getLogsPK() {
-        return logsPK;
+//
+//    public Logs(Date date) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//
+//    public Logs(Date data, Destinos destinos, Motoristas motoristas, Veiculos veiculos) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+
+    public Integer getIdLog() {
+        return idLog;
     }
 
-    public void setLogsPK(LogsPK logsPK) {
-        this.logsPK = logsPK;
+    public void setIdLog(Integer idLog) {
+        this.idLog = idLog;
     }
 
     public Date getData() {
@@ -116,7 +134,7 @@ public class Logs implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (logsPK != null ? logsPK.hashCode() : 0);
+        hash += (idLog != null ? idLog.hashCode() : 0);
         return hash;
     }
 
@@ -127,7 +145,7 @@ public class Logs implements Serializable {
             return false;
         }
         Logs other = (Logs) object;
-        if ((this.logsPK == null && other.logsPK != null) || (this.logsPK != null && !this.logsPK.equals(other.logsPK))) {
+        if ((this.idLog == null && other.idLog != null) || (this.idLog != null && !this.idLog.equals(other.idLog))) {
             return false;
         }
         return true;
@@ -135,7 +153,7 @@ public class Logs implements Serializable {
 
     @Override
     public String toString() {
-        return "Entidades.Logs[ logsPK=" + logsPK + " ]";
+        return "Entidades.Logs[ idLog=" + idLog + " ]";
     }
     
 }
