@@ -6,11 +6,16 @@
 
 package gui;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
@@ -24,16 +29,15 @@ public class searchLog extends javax.swing.JFrame {
     public searchLog() {
         initComponents();
         setTitle("Pesquisa de Logs");
-        setSize(400, 400);
+        setSize(400, 250);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
         JLabel labelBusca = new JLabel("Filtrar por:");
-        labelBusca.setBounds(20, 0, 120, 10);
+        labelBusca.setBounds(40, 60, 120, 10);
         add(labelBusca);
         
         JRadioButton rbMoto = new JRadioButton("Motorista");
         rbMoto.setActionCommand("Motorista");
-        rbMoto.setSelected(true);
 
         JRadioButton rbVeic = new JRadioButton("Veículo");
         rbVeic.setActionCommand("Veículos");
@@ -46,28 +50,34 @@ public class searchLog extends javax.swing.JFrame {
         group.add(rbMoto);
         group.add(rbVeic);
         group.add(rbDest);
+        JPanel panel = new JPanel();
+        //setLayout( new FlowLayout() );
+        panel.setBounds(150, 20, 100, 90);
+        panel.add(rbMoto);
+        panel.add(rbVeic);
+        panel.add(rbDest);
+        panel.setBorder(BorderFactory.createLineBorder(Color.black));
+        add(panel);        
         
-        setLayout( new FlowLayout() );
-
-        add(rbMoto);
-        add(rbVeic);
-        add(rbDest);
         
-        /*if(rbMoto.isSelected()){
-            JLabel labelBuscar = new JLabel("Informe o CPF");
-            labelBuscar.setBounds(20, 40, 100, 20);
-            add(labelBuscar);
-
-            JTextField tfBusca = new JTextField();
-            tfBusca.setSize(110,55);
-            tfBusca.setLocation(20, 30);
-            add(tfBusca);
-
-            JButton buttonBusca = new JButton("Buscar");
-            buttonBusca.setSize(90,30);
-            buttonBusca.setLocation(140, 67);
-            add(buttonBusca);
-        }*/
+        JButton buttonBusca = new JButton("Confirmar");
+        buttonBusca.setSize(130,30);
+        buttonBusca.setLocation(135, 130);
+        buttonBusca.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String resposta = "";
+                if(rbMoto.isSelected()){
+                    resposta = JOptionPane.showInputDialog("Informe o CPF do motorista:");
+                }else if(rbVeic.isSelected()){
+                    resposta = JOptionPane.showInputDialog("Informe a placa do veículo:");
+                }else if(rbDest.isSelected()){
+                    resposta = JOptionPane.showInputDialog("Informe o nome do destino:");
+                }
+                System.out.println(resposta);
+            }
+        });
+        add(buttonBusca);
+        
 
     }
 

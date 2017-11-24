@@ -68,12 +68,19 @@ public class menuPrincipal extends javax.swing.JFrame {
                 rl.setVisible(true);
             }
         });
+        JMenuItem searchLogs = new JMenuItem("Search Logs");
+        searchLogs.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                sl.setVisible(true);
+            }
+        });
         
         
         cadMenu.add(cadMot);
         cadMenu.add(cadVei);
         cadMenu.add(cadDest);
-        consMenu.add(consLogs);
+        consMenu.add(consLogs); 
+        consMenu.add(searchLogs);
        
         JButton buttonMoto = new JButton("A");
         buttonMoto.setSize(70,70);

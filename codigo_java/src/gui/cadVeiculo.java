@@ -21,7 +21,7 @@ public class cadVeiculo extends javax.swing.JFrame {
     public cadVeiculo() {
         initComponents();
         setTitle("Cadastro de Veículos");
-        setSize(250, 355);
+        setSize(255, 355);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
         JLabel labelBusca = new JLabel("Informe a Placa");
