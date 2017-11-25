@@ -5,6 +5,7 @@
  */
 package gui;
 
+import Arduino.AcessaArduino;
 import java.awt.Color;
 import javax.swing.*;
 import java.awt.FlowLayout;
@@ -18,7 +19,9 @@ import java.awt.Image;
  * @author a1602020
  */
 public class menuPrincipal extends javax.swing.JFrame {
-
+    
+    
+    AcessaArduino acessaArduino;
     /**
      * Creates new form menuPrincipal
      */
@@ -27,6 +30,14 @@ public class menuPrincipal extends javax.swing.JFrame {
         setTitle("Controle de Frota");
         setSize(500, 500);
         setContentPane(new JLabel(new ImageIcon("src\\gui\\img\\background.png")));        
+        
+        /*try {
+            acessaArduino = new AcessaArduino();
+            System.out.println("porta detectada: " + acessaArduino.getPortaSelecionada());
+
+        } catch (Exception e) {
+            System.out.println("Erro ao acionar o arduino");
+        }*/
         
         cadMotorista cm = new cadMotorista();
         cadDestinos cd = new cadDestinos();
