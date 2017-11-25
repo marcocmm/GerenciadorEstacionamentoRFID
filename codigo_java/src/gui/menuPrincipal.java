@@ -11,6 +11,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.plaf.basic.DefaultMenuLayout;
+import java.awt.Image;
 
 /**
  *
@@ -25,6 +26,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         initComponents();
         setTitle("Controle de Frota");
         setSize(500, 500);
+        setContentPane(new JLabel(new ImageIcon("src\\gui\\img\\background.png")));        
         
         cadMotorista cm = new cadMotorista();
         cadDestinos cd = new cadDestinos();
@@ -82,7 +84,9 @@ public class menuPrincipal extends javax.swing.JFrame {
         consMenu.add(consLogs); 
         consMenu.add(searchLogs);
        
-        JButton buttonMoto = new JButton("A");
+        Icon iconeMoto = new ImageIcon("src\\gui\\img\\btnMoto.png");
+        JButton buttonMoto = new JButton(iconeMoto);
+        buttonMoto.setBorder(null);
         buttonMoto.setSize(70,70);
         buttonMoto.setLocation(15, 15);
         buttonMoto.addActionListener(new ActionListener() {
@@ -92,7 +96,9 @@ public class menuPrincipal extends javax.swing.JFrame {
         });
         add(buttonMoto);
         
-        JButton buttonVeic = new JButton("B");
+        Icon iconeVeic = new ImageIcon("src\\gui\\img\\btnVeic.png");
+        JButton buttonVeic = new JButton(iconeVeic);
+        buttonVeic.setBorder(null);
         buttonVeic.setSize(70,70);
         buttonVeic.setLocation(90, 15);
         buttonVeic.addActionListener(new ActionListener() {
@@ -102,7 +108,9 @@ public class menuPrincipal extends javax.swing.JFrame {
         });
         add(buttonVeic);
         
-        JButton buttonDest = new JButton("C");
+        Icon iconeDest = new ImageIcon("src\\gui\\img\\btnDest.png");
+        JButton buttonDest = new JButton(iconeDest);
+        buttonDest.setBorder(null);
         buttonDest.setSize(70,70);
         buttonDest.setLocation(165, 15);
         buttonDest.addActionListener(new ActionListener() {
@@ -112,7 +120,9 @@ public class menuPrincipal extends javax.swing.JFrame {
         });
         add(buttonDest);
         
-        JButton buttonLog = new JButton("D");
+        Icon iconeLog = new ImageIcon("src\\gui\\img\\btnLogs.png");
+        JButton buttonLog = new JButton(iconeLog);
+        buttonLog.setBorder(null);
         buttonLog.setSize(70,70);
         buttonLog.setLocation(400, 15);
         buttonLog.addActionListener(new ActionListener() {
@@ -122,7 +132,9 @@ public class menuPrincipal extends javax.swing.JFrame {
         });
         add(buttonLog);
         
-        JButton buttonSearchLog = new JButton("E");
+        Icon iconeSearchLogs = new ImageIcon("src\\gui\\img\\btnSearchLogs.png");
+        JButton buttonSearchLog = new JButton(iconeSearchLogs);
+        buttonSearchLog.setBorder(null);
         buttonSearchLog.setSize(70,70);
         buttonSearchLog.setLocation(325, 15);
         buttonSearchLog.addActionListener(new ActionListener() {

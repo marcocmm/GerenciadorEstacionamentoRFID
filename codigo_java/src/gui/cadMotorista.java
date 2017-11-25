@@ -5,6 +5,8 @@
  */
 package gui;
 
+import java.awt.Image;
+
 import javax.swing.*;
 
 /**
@@ -19,7 +21,7 @@ public class cadMotorista extends javax.swing.JFrame {
     public cadMotorista() {
         initComponents();        
         setTitle("Cadastro de Motoristas");
-        setSize(260, 310);
+        setSize(260, 310);       
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
         JLabel labelBusca = new JLabel("Informe o CPF");
