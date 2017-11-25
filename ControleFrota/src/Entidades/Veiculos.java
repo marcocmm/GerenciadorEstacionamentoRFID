@@ -8,7 +8,6 @@ package Entidades;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,19 +34,15 @@ public class Veiculos implements Serializable {
     @Basic(optional = false)
     @Column(name = "idVeiculo")
     private Integer idVeiculo;
-    @Basic(optional = false)
-    @Column(name = "Placa")
-    private String placa;
-    @Basic(optional = false)
     @Column(name = "Marca")
     private String marca;
-    @Basic(optional = false)
     @Column(name = "Modelo")
     private String modelo;
-    @Basic(optional = false)
+    @Column(name = "Placa")
+    private String placa;
     @Column(name = "RFIDVeiculo")
     private String rFIDVeiculo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "veiculos")
+    @OneToMany(mappedBy = "veiculos")
     private List<Logs> logsList;
 
     public Veiculos() {
@@ -57,35 +52,28 @@ public class Veiculos implements Serializable {
         this.idVeiculo = idVeiculo;
     }
 
-    public Veiculos(Integer idVeiculo, String placa, String marca, String modelo, String rFIDVeiculo) {
+    public Veiculos(Integer idVeiculo, String marca, String modelo, String placa, String rFIDVeiculo) {
         this.idVeiculo = idVeiculo;
-        this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
+        this.placa = placa;
         this.rFIDVeiculo = rFIDVeiculo;
     }
 
-    public Veiculos(String placa, String marca, String modelo, String rFIDVeiculo) {
-        this.placa = placa;
+    public Veiculos(String marca, String modelo, String placa, String rFIDVeiculo) {
         this.marca = marca;
         this.modelo = modelo;
+        this.placa = placa;
         this.rFIDVeiculo = rFIDVeiculo;
     }
 
+//    }
     public Integer getIdVeiculo() {
         return idVeiculo;
     }
 
     public void setIdVeiculo(Integer idVeiculo) {
         this.idVeiculo = idVeiculo;
-    }
-
-    public String getPlaca() {
-        return placa;
-    }
-
-    public void setPlaca(String placa) {
-        this.placa = placa;
     }
 
     public String getMarca() {
@@ -102,6 +90,14 @@ public class Veiculos implements Serializable {
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
     }
 
     public String getRFIDVeiculo() {

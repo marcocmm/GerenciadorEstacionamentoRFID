@@ -29,7 +29,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         initComponents();
         setTitle("Controle de Frota");
         setSize(500, 500);
-        setContentPane(new JLabel(new ImageIcon("src\\gui\\img\\background.png")));        
+        setContentPane(new JLabel(new ImageIcon("src/gui/img/background.png")));        
         
         /*try {
             acessaArduino = new AcessaArduino();
@@ -95,7 +95,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         consMenu.add(consLogs); 
         consMenu.add(searchLogs);
        
-        Icon iconeMoto = new ImageIcon("src\\gui\\img\\btnMoto.png");
+        Icon iconeMoto = new ImageIcon("src/gui/img/btnMoto.png");
         JButton buttonMoto = new JButton(iconeMoto);
         buttonMoto.setBorder(null);
         buttonMoto.setSize(70,70);
@@ -107,7 +107,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         });
         add(buttonMoto);
         
-        Icon iconeVeic = new ImageIcon("src\\gui\\img\\btnVeic.png");
+        Icon iconeVeic = new ImageIcon("src/gui/img/btnVeic.png");
         JButton buttonVeic = new JButton(iconeVeic);
         buttonVeic.setBorder(null);
         buttonVeic.setSize(70,70);
@@ -119,7 +119,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         });
         add(buttonVeic);
         
-        Icon iconeDest = new ImageIcon("src\\gui\\img\\btnDest.png");
+        Icon iconeDest = new ImageIcon("src/gui/img/btnDest.png");
         JButton buttonDest = new JButton(iconeDest);
         buttonDest.setBorder(null);
         buttonDest.setSize(70,70);
@@ -131,7 +131,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         });
         add(buttonDest);
         
-        Icon iconeLog = new ImageIcon("src\\gui\\img\\btnLogs.png");
+        Icon iconeLog = new ImageIcon("src/gui/img/btnLogs.png");
         JButton buttonLog = new JButton(iconeLog);
         buttonLog.setBorder(null);
         buttonLog.setSize(70,70);
@@ -143,7 +143,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         });
         add(buttonLog);
         
-        Icon iconeSearchLogs = new ImageIcon("src\\gui\\img\\btnSearchLogs.png");
+        Icon iconeSearchLogs = new ImageIcon("src/gui/img/btnSearchLogs.png");
         JButton buttonSearchLog = new JButton(iconeSearchLogs);
         buttonSearchLog.setBorder(null);
         buttonSearchLog.setSize(70,70);

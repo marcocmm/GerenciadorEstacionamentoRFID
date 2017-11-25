@@ -28,6 +28,9 @@ public class DAOMotorista extends DAOGenerico<Motoristas>{
         }
     }
 
+    public Motoristas getByCPF(String cpf) {
+        return (Motoristas) em.createQuery("SELECT e FROM Motoristas e WHERE e.cpf = :cpf").getSingleResult();
+    }
     public List<Motoristas> listByNome(String nome) {
         return em.createQuery("SELECT e FROM Motoristas e WHERE e.Nome LIKE :nome").setParameter("nome", "%" + nome + "%").getResultList();
     }

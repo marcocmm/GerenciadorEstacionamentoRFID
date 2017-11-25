@@ -37,18 +37,17 @@ public class Logs implements Serializable {
     @Basic(optional = false)
     @Column(name = "idLog")
     private Integer idLog;
-    @Basic(optional = false)
     @Column(name = "Data")
     @Temporal(TemporalType.DATE)
     private Date data;
     @JoinColumn(name = "Destinos_idDestino", referencedColumnName = "idDestino")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Destinos destinos;
     @JoinColumn(name = "Motoristas_idMotorista", referencedColumnName = "idMotorista")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Motoristas motoristas;
     @JoinColumn(name = "Veiculos_idVeiculo", referencedColumnName = "idVeiculo")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Veiculos veiculos;
 
     public Logs() {
@@ -58,20 +57,8 @@ public class Logs implements Serializable {
         this.idLog = idLog;
     }
 
-    public Logs(Integer idLog, Date data) {
+    public Logs(Integer idLog, Date data, Destinos destinos, Motoristas motoristas, Veiculos veiculos) {
         this.idLog = idLog;
-        this.data = data;
-    }
-
-    public Logs(int idLog, Date data, Destinos destinos, Motoristas motoristas, Veiculos veiculos) {
-        this.idLog = idLog;
-        this.data = data;
-        this.destinos = destinos;
-        this.motoristas = motoristas;
-        this.veiculos = veiculos;
-    }
-
-    public Logs(Date data, Destinos destinos, Motoristas motoristas, Veiculos veiculos) {
         this.data = data;
         this.destinos = destinos;
         this.motoristas = motoristas;
@@ -82,14 +69,14 @@ public class Logs implements Serializable {
         this.data = data;
     }
 
-//
-//    public Logs(Date date) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    public Logs(Date data, Destinos destinos, Motoristas motoristas, Veiculos veiculos) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
+    public Logs(Date data, Destinos destinos, Motoristas motoristas, Veiculos veiculos) {
+        this.data = data;
+        this.destinos = destinos;
+        this.motoristas = motoristas;
+        this.veiculos = veiculos;
+    }
+    
+    
 
     public Integer getIdLog() {
         return idLog;

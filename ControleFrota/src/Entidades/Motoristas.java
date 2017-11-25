@@ -8,7 +8,6 @@ package Entidades;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,16 +34,13 @@ public class Motoristas implements Serializable {
     @Basic(optional = false)
     @Column(name = "idMotorista")
     private Integer idMotorista;
-    @Basic(optional = false)
-    @Column(name = "Nome")
-    private String nome;
-    @Basic(optional = false)
     @Column(name = "CPF")
     private String cpf;
-    @Basic(optional = false)
+    @Column(name = "Nome")
+    private String nome;
     @Column(name = "RFIDMotorista")
     private String rFIDMotorista;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "motoristas")
+    @OneToMany(mappedBy = "motoristas")
     private List<Logs> logsList;
 
     public Motoristas() {
@@ -54,21 +50,26 @@ public class Motoristas implements Serializable {
         this.idMotorista = idMotorista;
     }
 
-    public Motoristas(Integer idMotorista, String nome, String cpf, String rFIDMotorista) {
+    public Motoristas(Integer idMotorista, String cpf, String nome, String rFIDMotorista, List<Logs> logsList) {
         this.idMotorista = idMotorista;
-        this.nome = nome;
         this.cpf = cpf;
+        this.nome = nome;
+        this.rFIDMotorista = rFIDMotorista;
+        this.logsList = logsList;
+    }
+
+    public Motoristas(String cpf, String nome, String rFIDMotorista) {
+        this.cpf = cpf;
+        this.nome = nome;
         this.rFIDMotorista = rFIDMotorista;
     }
 
-    public Motoristas(String nome, String cpf, String rFIDMotorista) {
-        this.nome = nome;
+    public Motoristas(Integer idMotorista, String cpf, String nome, String rFIDMotorista) {
+        this.idMotorista = idMotorista;
         this.cpf = cpf;
+        this.nome = nome;
         this.rFIDMotorista = rFIDMotorista;
     }
-
- 
-
     public Integer getIdMotorista() {
         return idMotorista;
     }
@@ -77,20 +78,20 @@ public class Motoristas implements Serializable {
         this.idMotorista = idMotorista;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getCpf() {
         return cpf;
     }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getRFIDMotorista() {

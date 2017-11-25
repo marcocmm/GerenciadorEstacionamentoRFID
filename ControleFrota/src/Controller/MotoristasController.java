@@ -20,8 +20,8 @@ public class MotoristasController {
     public MotoristasController() {
         daomot = new DAOMotorista();
     }
-    
-    public void cadastrar (String nome, String cpf, String rfid){
+
+    public void cadastrar(String nome, String cpf, String rfid) {
         Motoristas m1 = new Motoristas(nome, cpf, rfid);
 //        m1.setNome(nome);
 //        m1.setCpf(cpf);
@@ -30,32 +30,43 @@ public class MotoristasController {
         try {
             daomot.inserir(m1);
         } catch (Exception e) {
-            System.out.println("Erro "+e);
+            System.out.println("Erro " + e);
         }
-        
+
     }
-    public void excluir (Integer id){
+
+    public void excluir(Integer id) {
         Motoristas m1 = new Motoristas(id);
         try {
-        daomot.remover(m1);
+            daomot.remover(m1);
         } catch (Exception e) {
-            System.out.println("Erro "+e);
+            System.out.println("Erro " + e);
         }
     }
-    public void alterar (Integer id, String nome, String cpf, String rfid){
+
+    public void alterar(Integer id, String nome, String cpf, String rfid) {
         Motoristas m1 = new Motoristas(id, nome, cpf, rfid);
         try {
-        daomot.atualizar(m1);
+            daomot.atualizar(m1);
         } catch (Exception e) {
-            System.out.println("Erro "+e);
+            System.out.println("Erro " + e);
         }
     }
-    public List<Motoristas> listarId (Integer id){
+
+    public Motoristas getByCPF(String cpf) {
+        try {
+            return daomot.getByCPF(cpf);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public List<Motoristas> listarId(Integer id) {
         List<Motoristas> lista = null;
-        try {            
+        try {
             lista = daomot.listById(id);
         } catch (Exception e) {
-            System.out.println("Erro "+e);
+            System.out.println("Erro " + e);
         }
         return lista;
     }

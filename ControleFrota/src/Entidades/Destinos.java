@@ -8,7 +8,6 @@ package Entidades;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,12 +38,11 @@ public class Destinos implements Serializable {
     private String cep;
     @Column(name = "Endereco")
     private String endereco;
-    @Column(name = "Numero")
-    private String numero;
-    @Basic(optional = false)
     @Column(name = "Nome")
     private String nome;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "destinos")
+    @Column(name = "Numero")
+    private String numero;
+    @OneToMany(mappedBy = "destinos")
     private List<Logs> logsList;
 
     public Destinos() {
@@ -54,24 +52,19 @@ public class Destinos implements Serializable {
         this.idDestino = idDestino;
     }
 
-    public Destinos(Integer idDestino, String nome) {
-        this.idDestino = idDestino;
+    public Destinos(String cep, String endereco, String nome, String numero) {
+        this.cep = cep;
+        this.endereco = endereco;
         this.nome = nome;
+        this.numero = numero;
     }
 
-    public Destinos(Integer idDestino, String cep, String endereco, String numero, String nome) {
+    public Destinos(Integer idDestino, String cep, String endereco, String nome, String numero) {
         this.idDestino = idDestino;
         this.cep = cep;
         this.endereco = endereco;
-        this.numero = numero;
         this.nome = nome;
-    }
-
-    public Destinos(String cep, String endereco, String numero, String nome) {
-        this.cep = cep;
-        this.endereco = endereco;
         this.numero = numero;
-        this.nome = nome;
     }
 
     public Integer getIdDestino() {
@@ -98,20 +91,20 @@ public class Destinos implements Serializable {
         this.endereco = endereco;
     }
 
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
     public List<Logs> getLogsList() {

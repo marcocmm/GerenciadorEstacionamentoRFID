@@ -47,7 +47,6 @@ public class AcessaArduino implements SerialPortEventListener {
     //   public AcessaArduino(Observer observador) {
     //      addObserver(observador);
     //   }
-    
     public AcessaArduino() {
         initialize();
     }
@@ -68,7 +67,7 @@ public class AcessaArduino implements SerialPortEventListener {
         CommPortIdentifier portId = null;
         System.out.println("ak");
         Enumeration portEnum = CommPortIdentifier.getPortIdentifiers();
-        
+
         portEnum = CommPortIdentifier.getPortIdentifiers();
         // iterate through, looking for the port
         while (portEnum.hasMoreElements()) {
@@ -82,7 +81,6 @@ public class AcessaArduino implements SerialPortEventListener {
                 }
             }
         }
-
         if (portId == null) {
             System.out.println("Não encontrou a porta USB destinada ao Arduino");
             return;
@@ -100,7 +98,7 @@ public class AcessaArduino implements SerialPortEventListener {
 
             // open the streams
             input = new BufferedReader(new InputStreamReader(serialPort.getInputStream()));
-            
+
             output = serialPort.getOutputStream();
 
             // add event listeners
@@ -120,13 +118,13 @@ public class AcessaArduino implements SerialPortEventListener {
     }
 
     public void setDataToArduino(SerialPort portaDeComunicacao, String valor) {
-        try {                   
-            output.write(valor.getBytes());          
+        try {
+            output.write(valor.getBytes());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
-    
+
     public void sendSingleByte(byte myByte) {
         try {
             output.write(myByte);
@@ -136,18 +134,15 @@ public class AcessaArduino implements SerialPortEventListener {
         }
     }
 
-
     public synchronized void serialEvent(SerialPortEvent oEvent) {
-        if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
-            try {
-                String inputLine = input.readLine();
-                tempString = inputLine;
-                //      notifyObservers(tempString);
-                //      setChanged();
-            } catch (Exception e) {
-                System.err.println(e.toString());
-            }
+        try {
+            String inputLine = input.readLine();
+            tempString = inputLine;
+            //      notifyObservers(tempString);
+            //      setChanged();
+        } catch (Exception e) {
+            System.err.println(e.toString());
         }
     }
-    
+
 }

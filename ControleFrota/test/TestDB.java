@@ -9,7 +9,6 @@ import Controller.LogsController;
 import Controller.MotoristasController;
 import Controller.VeiculosController;
 import Entidades.Destinos;
-import static Entidades.Logs_.veiculos;
 import Entidades.Motoristas;
 import Entidades.Veiculos;
 import java.util.ArrayList;

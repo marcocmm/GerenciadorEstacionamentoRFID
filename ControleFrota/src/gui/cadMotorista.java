@@ -5,7 +5,11 @@
  */
 package gui;
 
-import java.awt.Image;
+import Controller.MotoristasController;
+import Entidades.Motoristas;
+import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -19,61 +23,103 @@ public class cadMotorista extends javax.swing.JFrame {
      * Creates new form cadMotorista
      */
     public cadMotorista() {
-        initComponents();        
+        MotoristasController motoristasController;
+        motoristasController = new MotoristasController();
+
+        initComponents();
         setTitle("Cadastro de Motoristas");
-        setSize(260, 310);       
+        setSize(260, 310);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
+
         JLabel labelBusca = new JLabel("Informe o CPF");
         labelBusca.setBounds(20, 10, 100, 20);
-        add(labelBusca);
-        
+
         JTextField tfBusca = new JTextField();
-        tfBusca.setSize(110,25);
+        tfBusca.setSize(110, 25);
         tfBusca.setLocation(20, 30);
-        add(tfBusca);
-        
-        JButton buttonBusca = new JButton("Buscar");
-        buttonBusca.setSize(90,30);
+
+        JButton buttonBusca = new JButton("Buscar1");
+        buttonBusca.setSize(90, 30);
         buttonBusca.setLocation(140, 27);
-        add(buttonBusca);
-        
-        JLabel labelNome = new JLabel("Nome");
+
+        JLabel labelNome = new JLabel("Nome1");
         labelNome.setBounds(20, 60, 100, 20);
-        add(labelNome);
-        
+
         JTextField tfNome = new JTextField();
-        tfNome.setSize(210,25);
+        tfNome.setSize(210, 25);
         tfNome.setLocation(20, 80);
-        add(tfNome);
-        
+
         JLabel labelCPF = new JLabel("CPF");
         labelCPF.setBounds(20, 110, 100, 20);
-        add(labelCPF);
-        
+
         JTextField tfCPF = new JTextField();
-        tfCPF.setSize(110,25);
+        tfCPF.setSize(110, 25);
         tfCPF.setLocation(20, 130);
-        add(tfCPF);
-        
+
         JLabel labelRFID = new JLabel("RFID");
         labelRFID.setBounds(20, 160, 100, 20);
-        add(labelRFID);
-        
+
         JTextField tfRFID = new JTextField();
-        tfRFID.setSize(100,25);
+        tfRFID.setSize(100, 25);
         tfRFID.setLocation(20, 180);
-        add(tfRFID);
-        
+
         JButton buttonSave = new JButton("Salvar");
-        buttonSave.setSize(100,30);
+        buttonSave.setSize(100, 30);
         buttonSave.setLocation(20, 220);
         add(buttonSave);
-        
+
         JButton buttonCancel = new JButton("Cancelar");
-        buttonCancel.setSize(100,30);
+        buttonCancel.setSize(100, 30);
         buttonCancel.setLocation(130, 220);
+
+        buttonBusca.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Teste");
+                String cpf;
+                cpf = tfBusca.getText();
+                try {
+                    Motoristas motorista = motoristasController.getByCPF(cpf);
+//                    tfCPF = cpf;
+                    JOptionPane.showMessageDialog(null, "Cadastrado" + motorista.getCpf() + "");
+
+                } catch (Exception ee) {
+                    System.out.println("bla");
+                }
+            }
+        });
+        
+        buttonSave.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String nome;
+                String cpf;
+                String rfid;
+                nome = tfNome.getText();
+                cpf = tfCPF.getText();
+                rfid = tfRFID.getText();
+                if (nome.equals("") | cpf.equals("") | rfid.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Preencha todos campos1");
+                } else {
+                    try {
+                        motoristasController.cadastrar(nome, cpf, rfid);
+                        JOptionPane.showMessageDialog(null, "Cadastrado");
+                    } catch (HeadlessException he) {
+                        JOptionPane.showMessageDialog(null, "Não foi possível cadastrar");
+                        System.out.println(he);
+                    }
+                }
+            }
+        });
+
         add(buttonCancel);
+        add(labelNome);
+        add(tfNome);
+        add(tfCPF);
+        add(buttonBusca);
+        add(tfBusca);
+        add(labelCPF);
+        add(labelRFID);
+        add(labelBusca);
+        add(tfRFID);
     }
 
     /**
