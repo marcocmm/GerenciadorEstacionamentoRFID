@@ -118,8 +118,10 @@ public class newLog extends javax.swing.JFrame {
                             primeiroRfid = data;
                             System.out.println("Primeiro RFID");
                         } else if (segundoRfid.equals("")) {
-                            segundoRfid = data;
-                            System.out.println("Segundo RFID");
+                            if (!primeiroRfid.equals(data)) {
+                                segundoRfid = data;
+                                System.out.println("Segundo RFID");
+                            }
                         } else if (destinoThread != null) {
                             System.out.println("Destino");
                             date = new java.util.Date();
@@ -136,7 +138,10 @@ public class newLog extends javax.swing.JFrame {
                                 motorista = motoristasController.getByRFID(segundoRfid);
                             }
                             logsController.cadastrar(date, destinoThread, motorista, veiculo);
+                            primeiroRfid = "";
+                            segundoRfid = "";
                             System.out.println("Sucesso ----------");
+                            Thread.interrupted();
                         }
                         Thread.sleep(200);
                     }

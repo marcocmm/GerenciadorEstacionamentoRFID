@@ -26,9 +26,12 @@ public class DAOVeiculos extends DAOGenerico<Veiculos> {
     }
 
     public Veiculos getByRfid(String rfid) {
+        rfid = rfid.trim().toUpperCase();
         List<Veiculos> lista = listAll();
+        String rfidVeiculo;
         for (Veiculos veiculo : lista) {
-            if (veiculo.getRFIDVeiculo().equals(rfid)) {
+            rfidVeiculo = veiculo.getRFIDVeiculo().trim().toUpperCase();       
+            if (rfidVeiculo.equals(rfid)) {
                 return veiculo;
             }
         }

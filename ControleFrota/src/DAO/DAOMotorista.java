@@ -36,10 +36,15 @@ public class DAOMotorista extends DAOGenerico<Motoristas> {
     }
 
     public Motoristas getByRfid(String rfid) {
+        rfid = rfid.trim();
+
         List<Motoristas> lista;
+        String rfidMotorista;
         lista = listAll();
         for (Motoristas motorista : lista) {
-            if (motorista.getRFIDMotorista().equals(rfid)) {
+            rfidMotorista = motorista.getRFIDMotorista();
+            rfidMotorista = rfidMotorista.trim();
+            if (rfidMotorista.equals(rfid)) {
                 return motorista;
             }
         }

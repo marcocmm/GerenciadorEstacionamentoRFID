@@ -41,10 +41,8 @@ public class menuPrincipal extends javax.swing.JFrame {
         
         cadMotorista cm = new cadMotorista();
         cadDestinos cd = new cadDestinos();
-        cadVeiculo cv = new cadVeiculo();
-        registroLogs rl = new registroLogs();
+        cadVeiculo cv = new cadVeiculo();        
         searchLog sl = new searchLog();
-        newLog nl = new newLog();
         // Cria uma barra de menu para o JFrame
         JMenuBar menuBar = new JMenuBar();
         
@@ -79,12 +77,14 @@ public class menuPrincipal extends javax.swing.JFrame {
         JMenuItem neLog = new JMenuItem("Novo Registro");
         neLog.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                newLog nl = new newLog();
                 nl.setVisible(true);
             }
         });
         JMenuItem consLogs = new JMenuItem("Registros");
         consLogs.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                registroLogs rl = new registroLogs();
                 rl.setVisible(true);
             }
         });
@@ -146,6 +146,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         buttonLog.setLocation(400, 15);
         buttonLog.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                registroLogs rl = new registroLogs();
                 rl.setVisible(true);
             }
         });
@@ -169,6 +170,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         buttonNewLog.setLocation(245, 15);
         buttonNewLog.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                newLog nl = new newLog();
                 nl.setVisible(true);
             }
         });
