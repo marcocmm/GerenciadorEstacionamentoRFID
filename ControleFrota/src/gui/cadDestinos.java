@@ -5,6 +5,8 @@
  */
 package gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -82,6 +84,11 @@ public class cadDestinos extends javax.swing.JFrame {
         JButton buttonCancel = new JButton("Cancelar");
         buttonCancel.setSize(100,30);
         buttonCancel.setLocation(130, 270);
+        buttonCancel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
         add(buttonCancel);
     }
 

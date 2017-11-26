@@ -22,7 +22,7 @@ public class MotoristasController {
     }
 
     public void cadastrar(String nome, String cpf, String rfid) {
-        Motoristas m1 = new Motoristas(nome, cpf, rfid);
+        Motoristas m1 = new Motoristas(cpf, nome, rfid);
 //        m1.setNome(nome);
 //        m1.setCpf(cpf);
 //        m1.setRFIDMotorista(rfid);
@@ -45,7 +45,7 @@ public class MotoristasController {
     }
 
     public void alterar(Integer id, String nome, String cpf, String rfid) {
-        Motoristas m1 = new Motoristas(id, nome, cpf, rfid);
+        Motoristas m1 = new Motoristas(id, cpf, nome, rfid);
         try {
             daomot.atualizar(m1);
         } catch (Exception e) {
@@ -55,13 +55,15 @@ public class MotoristasController {
 
     public Motoristas getByCPF(String cpf) {
         try {
-            return daomot.getByCPF(cpf);
+            List<Motoristas> listaMotoristas;
+            listaMotoristas = daomot.getByCPF(cpf);
+            return listaMotoristas.get(0);
         } catch (Exception e) {
             return null;
         }
     }
 
-    public List<Motoristas> listarId(Integer id) {
+    public List<Motoristas> listarById(Integer id) {
         List<Motoristas> lista = null;
         try {
             lista = daomot.listById(id);

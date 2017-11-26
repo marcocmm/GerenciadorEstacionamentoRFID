@@ -13,6 +13,7 @@ import Entidades.Motoristas;
 import Entidades.Veiculos;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.junit.Test;
 
 /**
@@ -37,7 +38,7 @@ public class TestDB {
     public void cadastrar() {
         motoristasController.cadastrar("Jao", "123", "321");
         Motoristas mot = null;
-        for (Motoristas motorista : motoristasController.listarId(0)) {
+        for (Motoristas motorista : motoristasController.listarById(0)) {
             mot = motorista;
             System.out.println(motorista.getNome() + "  " + motorista.getCpf());
         }
@@ -55,6 +56,16 @@ public class TestDB {
 
         }
         logsController.cadastrar(new Date(2017, 11, 21, 17, 19, 0), dest, mot, vei);
+    }
+
+    @Test
+    public void listar() {
+        List<Motoristas> listarById;
+        listarById = motoristasController.listarById(1);
+        System.out.println("Motoras:");
+        for (Motoristas motoristas : listarById) {
+            System.out.println(motoristas.getNome());
+        }
     }
 
     // TODO add test methods here.

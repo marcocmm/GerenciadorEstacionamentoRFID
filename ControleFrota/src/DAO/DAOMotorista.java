@@ -8,17 +8,18 @@ package DAO;
 import Entidades.Motoristas;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Query;
 
 /**
  *
  * @author a1602020
  */
-public class DAOMotorista extends DAOGenerico<Motoristas>{
-    
+public class DAOMotorista extends DAOGenerico<Motoristas> {
+
     public DAOMotorista() {
         super(Motoristas.class);
     }
-    
+
     public int autoIdSensor() {
         Integer a = (Integer) em.createQuery("SELECT MAX(e.idSensor) FROM Sensor e ").getSingleResult();
         if (a != null) {
@@ -28,9 +29,11 @@ public class DAOMotorista extends DAOGenerico<Motoristas>{
         }
     }
 
-    public Motoristas getByCPF(String cpf) {
-        return (Motoristas) em.createQuery("SELECT e FROM Motoristas e WHERE e.cpf = :cpf").getSingleResult();
+    public List<Motoristas> getByCPF(String cpf) {
+        return em.createQuery("SELECT e FROM Motoristas e WHERE e.cpf = :cpf").setParameter("cpf", cpf).getResultList();
+        
     }
+
     public List<Motoristas> listByNome(String nome) {
         return em.createQuery("SELECT e FROM Motoristas e WHERE e.Nome LIKE :nome").setParameter("nome", "%" + nome + "%").getResultList();
     }
@@ -57,7 +60,7 @@ public class DAOMotorista extends DAOGenerico<Motoristas>{
 
         List<String> ls = new ArrayList<>();
         for (int i = 0; i < lf.size(); i++) {
-            ls.add(lf.get(i).getIdMotorista()+ "-" + lf.get(i).getNome());
+            ls.add(lf.get(i).getIdMotorista() + "-" + lf.get(i).getNome());
         }
         return ls;
     }

@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
  *
@@ -25,10 +26,11 @@ public class cadMotorista extends javax.swing.JFrame {
     public cadMotorista() {
         MotoristasController motoristasController;
         motoristasController = new MotoristasController();
+        Motoristas motoristaBuscado = new Motoristas();
 
         initComponents();
         setTitle("Cadastro de Motoristas");
-        setSize(260, 310);
+        setSize(360, 270);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         JLabel labelBusca = new JLabel("Informe o CPF");
@@ -38,11 +40,11 @@ public class cadMotorista extends javax.swing.JFrame {
         tfBusca.setSize(110, 25);
         tfBusca.setLocation(20, 30);
 
-        JButton buttonBusca = new JButton("Buscar1");
+        JButton buttonBusca = new JButton("Buscar");
         buttonBusca.setSize(90, 30);
         buttonBusca.setLocation(140, 27);
 
-        JLabel labelNome = new JLabel("Nome1");
+        JLabel labelNome = new JLabel("Nome");
         labelNome.setBounds(20, 60, 100, 20);
 
         JTextField tfNome = new JTextField();
@@ -68,26 +70,61 @@ public class cadMotorista extends javax.swing.JFrame {
         buttonSave.setLocation(20, 220);
         add(buttonSave);
 
+        JButton buttonUpdate = new JButton("Alterar");
+        buttonUpdate.setSize(100, 30);
+        buttonUpdate.setLocation(130, 220);
+        add(buttonUpdate);
+
         JButton buttonCancel = new JButton("Cancelar");
         buttonCancel.setSize(100, 30);
-        buttonCancel.setLocation(130, 220);
+        buttonCancel.setLocation(240, 220);
+        buttonCancel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
 
+        buttonUpdate.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String nome;
+                String cpf;
+                String rfid;
+                nome = tfNome.getText();
+                cpf = tfCPF.getText();
+                rfid = tfRFID.getText();
+                
+                if (nome.equals("") | cpf.equals("") | rfid.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Preencha todos campos");
+                } else {
+                    try {
+                        motoristasController.alterar(motoristaBuscado.getIdMotorista(), nome, cpf, rfid);
+                        JOptionPane.showMessageDialog(null, "Alterado");
+                    } catch (HeadlessException he) {
+                        JOptionPane.showMessageDialog(null, "Não foi possível alterar");
+                        System.out.println(he);
+                    }
+                }
+            }
+        });
         buttonBusca.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Teste");
                 String cpf;
                 cpf = tfBusca.getText();
                 try {
                     Motoristas motorista = motoristasController.getByCPF(cpf);
-//                    tfCPF = cpf;
-                    JOptionPane.showMessageDialog(null, "Cadastrado" + motorista.getCpf() + "");
+                    tfCPF.setText(cpf);
+                    tfNome.setText(motorista.getNome());
+                    tfRFID.setText(motorista.getRFIDMotorista());
+                    motoristaBuscado.setIdMotorista(motorista.getIdMotorista());
+                    JOptionPane.showMessageDialog(null, "Encontrado");
 
                 } catch (Exception ee) {
-                    System.out.println("bla");
+                    JOptionPane.showMessageDialog(null, "Não encontrado Encontrado");
+                    System.out.println(ee);
                 }
             }
         });
-        
+
         buttonSave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String nome;
@@ -97,7 +134,7 @@ public class cadMotorista extends javax.swing.JFrame {
                 cpf = tfCPF.getText();
                 rfid = tfRFID.getText();
                 if (nome.equals("") | cpf.equals("") | rfid.equals("")) {
-                    JOptionPane.showMessageDialog(null, "Preencha todos campos1");
+                    JOptionPane.showMessageDialog(null, "Preencha todos campos");
                 } else {
                     try {
                         motoristasController.cadastrar(nome, cpf, rfid);
@@ -110,6 +147,7 @@ public class cadMotorista extends javax.swing.JFrame {
             }
         });
 
+        add(buttonUpdate);
         add(buttonCancel);
         add(labelNome);
         add(tfNome);
