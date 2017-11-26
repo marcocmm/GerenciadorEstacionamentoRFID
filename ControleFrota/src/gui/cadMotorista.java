@@ -19,7 +19,9 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  * @author a1602020
  */
 public class cadMotorista extends javax.swing.JFrame {
-
+    
+    
+    
     /**
      * Creates new form cadMotorista
      */
@@ -34,15 +36,15 @@ public class cadMotorista extends javax.swing.JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         JLabel labelBusca = new JLabel("Informe o CPF");
-        labelBusca.setBounds(20, 10, 100, 20);
+        labelBusca.setBounds(80, 10, 100, 20);
 
         JTextField tfBusca = new JTextField();
         tfBusca.setSize(110, 25);
-        tfBusca.setLocation(20, 30);
+        tfBusca.setLocation(70, 30);
 
         JButton buttonBusca = new JButton("Buscar");
         buttonBusca.setSize(90, 30);
-        buttonBusca.setLocation(140, 27);
+        buttonBusca.setLocation(190, 27);
 
         JLabel labelNome = new JLabel("Nome");
         labelNome.setBounds(20, 60, 100, 20);
@@ -78,6 +80,7 @@ public class cadMotorista extends javax.swing.JFrame {
         JButton buttonCancel = new JButton("Cancelar");
         buttonCancel.setSize(100, 30);
         buttonCancel.setLocation(240, 220);
+        
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
@@ -139,11 +142,19 @@ public class cadMotorista extends javax.swing.JFrame {
                     try {
                         motoristasController.cadastrar(nome, cpf, rfid);
                         JOptionPane.showMessageDialog(null, "Cadastrado");
+                        clear();
                     } catch (HeadlessException he) {
                         JOptionPane.showMessageDialog(null, "Não foi possível cadastrar");
                         System.out.println(he);
                     }
                 }
+            }
+
+            public void clear() {
+                tfCPF.setText("");
+                tfBusca.setText("");
+                tfNome.setText("");
+                tfRFID.setText("");
             }
         });
 
@@ -159,7 +170,7 @@ public class cadMotorista extends javax.swing.JFrame {
         add(labelBusca);
         add(tfRFID);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

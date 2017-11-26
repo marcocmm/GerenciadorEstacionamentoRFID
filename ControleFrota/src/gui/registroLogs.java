@@ -5,7 +5,11 @@
  */
 package gui;
 
+import Controller.LogsController;
+import Entidades.Logs;
 import java.awt.BorderLayout;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -20,24 +24,36 @@ public class registroLogs extends javax.swing.JFrame {
      */
     public registroLogs() {
         initComponents();
+        LogsController logsController;
+        logsController = new LogsController();
+        List<Logs> listLogs = null;
         setTitle("Registro de Logs");
         setSize(700, 400);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
-        String[] columnNames = {"Motorista", "Veículo", "Placa", "Data/Hora","Destino"};
-        Object[][] data = {{"João Gris", "Bicicreta","CXF7832", "27/11/2017 15:53:20", "Praia"},
-        {"Renan Kodama", "Patinete","CXF7832", "17/10/2017 11:22:20", "Rave"},
-        {"Chady", "Velotrol","FIB0420", "20/04/2017 16:20:20", "Narnia"}};
-        
-        
-        JTable table = new JTable(data, columnNames);
+
+        listLogs = logsController.listAll();
+        String[] row = new String[5];
+        String[][] matrix = new String[listLogs.size()][5];
+        Logs log;
+        for (int i = 0; i < listLogs.size(); i++) {
+            log = listLogs.get(i);
+            row[0] = log.getMotoristas().getNome();
+            row[1] = log.getVeiculos().getModelo();
+            row[2] = log.getVeiculos().getPlaca();
+            row[3] = log.getData().toGMTString();
+            row[4] = log.getDestinos().getNome();
+            matrix[i] = row;
+        }
+        String[] columnNames = {"Motorista", "Veículo", "Placa", "Data/Hora", "Destino"};
+        JTable table;
+        table = new JTable(matrix, columnNames);
         JScrollPane scrollPane = new JScrollPane(table);
+
         table.setFillsViewportHeight(true);
         setLayout(new BorderLayout());
         add(table.getTableHeader(), BorderLayout.PAGE_START);
         add(table, BorderLayout.CENTER);
-        
-        
+
     }
 
     /**
@@ -79,16 +95,24 @@ public class registroLogs extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(registroLogs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(registroLogs.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(registroLogs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(registroLogs.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(registroLogs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(registroLogs.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(registroLogs.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(registroLogs.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

@@ -44,6 +44,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         cadVeiculo cv = new cadVeiculo();
         registroLogs rl = new registroLogs();
         searchLog sl = new searchLog();
+        newLog nl = new newLog();
         // Cria uma barra de menu para o JFrame
         JMenuBar menuBar = new JMenuBar();
         
@@ -75,7 +76,13 @@ public class menuPrincipal extends javax.swing.JFrame {
                 cd.setVisible(true);
             }
         });
-        JMenuItem consLogs = new JMenuItem("Logs");
+        JMenuItem neLog = new JMenuItem("Novo Registro");
+        neLog.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                nl.setVisible(true);
+            }
+        });
+        JMenuItem consLogs = new JMenuItem("Registros");
         consLogs.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 rl.setVisible(true);
@@ -92,6 +99,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         cadMenu.add(cadMot);
         cadMenu.add(cadVei);
         cadMenu.add(cadDest);
+        cadMenu.add(neLog);
         consMenu.add(consLogs); 
         consMenu.add(searchLogs);
        
@@ -154,6 +162,17 @@ public class menuPrincipal extends javax.swing.JFrame {
             }
         });
         add(buttonSearchLog);
+        
+        JButton buttonNewLog = new JButton("");
+        buttonNewLog.setBorder(null);
+        buttonNewLog.setSize(70,70);
+        buttonNewLog.setLocation(245, 15);
+        buttonNewLog.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                nl.setVisible(true);
+            }
+        });
+        add(buttonNewLog);
     }
 
     /**

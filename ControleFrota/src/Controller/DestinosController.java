@@ -21,8 +21,8 @@ public class DestinosController {
         daoDestinos = new DAODestinos();
     }
     
-    public void cadastrar (String cep, String endereco, String numero, String nome){
-        Destinos destino = new Destinos(cep, endereco, numero, nome);
+    public void cadastrar (String cep, String endereco, String nome, String numero){
+        Destinos destino = new Destinos(cep, endereco, nome, numero);
 
         try {
             daoDestinos.inserir(destino);
@@ -39,14 +39,26 @@ public class DestinosController {
             System.out.println("Erro "+e);
         }
     }
-    public void alterar (Integer id, String cep, String endereco, String numero, String nome){
-        Destinos m1 = new Destinos(id, cep, endereco, numero, nome);
+    public void alterar (Integer id, String cep, String endereco, String nome, String numero){
+        Destinos m1 = new Destinos(id, cep, endereco, nome, numero);
         try {
         daoDestinos.atualizar(m1);
         } catch (Exception e) {
             System.out.println("Erro "+e);
         }
     }
+    
+     public Destinos getByNome(String nome) {
+        try {
+            List<Destinos> listaDestinos;
+            listaDestinos = daoDestinos.listByNome(nome);
+            return listaDestinos.get(0);
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+    
     public List<Destinos> listarId (Integer id){
         List<Destinos> lista = null;
         try {            

@@ -52,7 +52,6 @@ void loop()
     return;
   }
   // Mostra UID na serial
-  Serial.print("UID da tag :");
   String conteudo= "";
   byte letra;
   for (byte i = 0; i < mfrc522.uid.size; i++) 
@@ -63,35 +62,7 @@ void loop()
      conteudo.concat(String(mfrc522.uid.uidByte[i], HEX));
   }
   Serial.println();
-  Serial.print("Mensagem : ");
   conteudo.toUpperCase();
-  
-  // Testa se o cartao1 foi lido
-  if (conteudo.substring(1) == "D8 4B 12 22")
-  {
-    // Levanta a cancela e acende o led verde
-    microservo9g.write(-90);
-    digitalWrite(led_liberado, HIGH);
-    Serial.println("Cartao1 - Acesso liberado !");
-    Serial.println();
-    delay(3000);
-    microservo9g.write(90);
-    digitalWrite(led_liberado, LOW);
-    }
-    
-  // Testa se o cartao2 foi lido
-  if (conteudo.substring(1) == "87 4B DC 8A")
-  {
-    Serial.println("Cartao2 - Acesso negado !!");
-    Serial.println();
-    // Pisca o led vermelho
-    for (int i= 1; i<5 ; i++)
-    {
-      digitalWrite(led_negado, HIGH);
-      delay(200);
-      digitalWrite(led_negado, LOW);
-      delay(200);
-    }
-  }
-  delay(1000);
+ 
+  delay(500);
 }

@@ -14,14 +14,14 @@ import java.util.List;
  *
  * @author marco
  */
-public class DAOVeiculos extends DAOGenerico<Veiculos>{
-    
+public class DAOVeiculos extends DAOGenerico<Veiculos> {
+
     public DAOVeiculos() {
         super(Veiculos.class);
     }
 
-    public List<Veiculos> listByPlaca(String nome) {
-        return em.createQuery("SELECT e FROM Veiculos e WHERE e.placa LIKE :nome").setParameter("nome", "%" + nome + "%").getResultList();
+    public List<Veiculos> listByPlaca(String placas) {
+        return em.createQuery("SELECT e FROM Veiculos e WHERE e.placa = :placas").setParameter("placas", placas).getResultList();
     }
 
     public List<Veiculos> listById(int id) {
@@ -36,6 +36,10 @@ public class DAOVeiculos extends DAOGenerico<Veiculos>{
         return em.createQuery("SELECT e FROM Veiculos e ORDER BY e.idVeiculo").getResultList();
     }
 
+    public List<Veiculos> getByPlaca(String placa) {
+        return em.createQuery("SELECT e FROM Veiculos e WHERE e.placa = :placa").setParameter("pĺaca", placa).getResultList();
+    }
+    
     public List<String> listInOrderNomeStrings(String qualOrdem) {
         List<Veiculos> lf;
         if (qualOrdem.equals("id")) {
@@ -46,8 +50,9 @@ public class DAOVeiculos extends DAOGenerico<Veiculos>{
 
         List<String> ls = new ArrayList<>();
         for (int i = 0; i < lf.size(); i++) {
-            ls.add(lf.get(i).getIdVeiculo()+ "-" + lf.get(i).getModelo());
+            ls.add(lf.get(i).getIdVeiculo() + "-" + lf.get(i).getModelo());
         }
         return ls;
     }
+
 }

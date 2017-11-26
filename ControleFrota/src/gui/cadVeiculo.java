@@ -5,10 +5,14 @@
  */
 package gui;
 
+import Controller.VeiculosController;
+import Entidades.Veiculos;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -21,21 +25,25 @@ public class cadVeiculo extends javax.swing.JFrame {
      * Creates new form cadVeiculo
      */
     public cadVeiculo() {
+        VeiculosController veiculosController;
+        veiculosController = new VeiculosController();
+        Veiculos veiculoBuscado;
+        veiculoBuscado = new Veiculos();
         initComponents();
         setTitle("Cadastro de Veículos");
-        setSize(255, 355);
+        setSize(355, 310);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         JLabel labelBusca = new JLabel("Informe a Placa");
-        labelBusca.setBounds(20, 10, 120, 20);
+        labelBusca.setBounds(70, 10, 120, 20);
 
         JTextField tfBusca = new JTextField();
-        tfBusca.setSize(80, 25);
-        tfBusca.setLocation(20, 30);
+        tfBusca.setSize(100, 25);
+        tfBusca.setLocation(70, 30);
 
         JButton buttonBusca = new JButton("Buscar");
         buttonBusca.setSize(90, 30);
-        buttonBusca.setLocation(140, 27);
+        buttonBusca.setLocation(180, 27);
 
         JLabel labelMarca = new JLabel("Marca");
         labelMarca.setBounds(20, 60, 100, 20);
@@ -68,15 +76,90 @@ public class cadVeiculo extends javax.swing.JFrame {
         JButton buttonSave = new JButton("Salvar");
         buttonSave.setSize(100, 30);
         buttonSave.setLocation(20, 270);
+        add(buttonSave);
+
+        JButton buttonUpdate = new JButton("Alterar");
+        buttonUpdate.setSize(100, 30);
+        buttonUpdate.setLocation(130, 270);
+        add(buttonUpdate);
 
         JButton buttonCancel = new JButton("Cancelar");
         buttonCancel.setSize(100, 30);
-        buttonCancel.setLocation(130, 270);
+        buttonCancel.setLocation(240, 270);
+
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
             }
         });
+
+        buttonUpdate.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String marca;
+                String modelo;
+                String rfid;
+                String placa;
+                marca = tfMarca.getText();
+                modelo = tfModelo.getText();
+                rfid = tfRFID.getText();
+                placa = tfPlaca.getText();
+                if (marca.equals("") | modelo.equals("") | placa.equals("") | rfid.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Preencha todos campos");
+                } else {
+                    try {
+                        veiculosController.alterar(veiculoBuscado.getIdVeiculo(), marca, modelo, placa, rfid);
+                        JOptionPane.showMessageDialog(null, "Alterado");
+                    } catch (HeadlessException he) {
+                        JOptionPane.showMessageDialog(null, "Não foi possível alterar");
+                        System.out.println(he);
+                    }
+                }
+            }
+        });
+        buttonBusca.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String placa;
+                placa = tfBusca.getText();
+                try {
+                    Veiculos veiculos = veiculosController.getByPlaca(placa);
+                    tfPlaca.setText(placa);
+                    tfModelo.setText(veiculos.getModelo());
+                    tfMarca.setText(veiculos.getMarca());
+                    tfRFID.setText(veiculos.getRFIDVeiculo());
+                    veiculoBuscado.setIdVeiculo(veiculos.getIdVeiculo());
+                    JOptionPane.showMessageDialog(null, "Encontrado");
+
+                } catch (Exception ee) {
+                    JOptionPane.showMessageDialog(null, "Não encontrado Encontrado");
+                    System.out.println(ee);
+                }
+            }
+        });
+
+        buttonSave.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String marca;
+                String modelo;
+                String rfid;
+                String placa;
+                marca = tfMarca.getText();
+                modelo = tfModelo.getText();
+                rfid = tfRFID.getText();
+                placa = tfPlaca.getText();
+                if (marca.equals("") | modelo.equals("") | placa.equals("") | rfid.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Preencha todos campos");
+                } else {
+                    try {
+                        veiculosController.cadastrar(placa, marca, modelo, rfid);
+                        JOptionPane.showMessageDialog(null, "Cadastrado");
+                    } catch (HeadlessException he) {
+                        JOptionPane.showMessageDialog(null, "Não foi possível cadastrar");
+                        System.out.println(he);
+                    }
+                }
+            }
+        });
+        
         add(buttonCancel);
         add(labelBusca);
         add(tfBusca);
@@ -90,8 +173,9 @@ public class cadVeiculo extends javax.swing.JFrame {
         add(labelRFID);
         add(tfRFID);
         add(buttonSave);
+        
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

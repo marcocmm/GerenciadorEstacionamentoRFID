@@ -56,4 +56,13 @@ public class LogsController {
             System.out.println("Erro " + e);
         }
     }
+
+    public List<Logs> listAll() {
+        try {
+            return daomot.listAll();
+        } catch (Exception e) {
+            System.out.println("Erro " + e);
+            return null;
+        }
+    }
 }

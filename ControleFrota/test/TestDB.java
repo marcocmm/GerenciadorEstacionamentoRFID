@@ -9,6 +9,7 @@ import Controller.LogsController;
 import Controller.MotoristasController;
 import Controller.VeiculosController;
 import Entidades.Destinos;
+import Entidades.Logs;
 import Entidades.Motoristas;
 import Entidades.Veiculos;
 import java.util.ArrayList;
@@ -38,19 +39,19 @@ public class TestDB {
     public void cadastrar() {
         motoristasController.cadastrar("Jao", "123", "321");
         Motoristas mot = null;
-        for (Motoristas motorista : motoristasController.listarById(0)) {
+        for (Motoristas motorista : motoristasController.listarById(1)) {
             mot = motorista;
             System.out.println(motorista.getNome() + "  " + motorista.getCpf());
         }
         veiculosController.cadastrar("avh", "vw", "fox", "321");
         Veiculos vei = null;
-        for (Veiculos veiculo : veiculosController.listarId(0)) {
+        for (Veiculos veiculo : veiculosController.listarId(1)) {
             vei = veiculo;
             System.out.println(veiculo.getMarca() + "  " + veiculo.getModelo());
         }
-        destinoController.cadastrar("87302", "rua", "12", "oficina");
-        Destinos dest = null;
-        for (Destinos destinos : destinoController.listarId(0)) {
+        destinoController.cadastrar("87302", "rua", "oficina", "12");
+        Destinos dest = new Destinos("87302", "rua", "oficina", "12");
+        for (Destinos destinos : destinoController.listarId(1)) {
             dest = destinos;
             System.out.println(destinos.getNome() + "  " + destinos.getCep());
 
@@ -65,6 +66,13 @@ public class TestDB {
         System.out.println("Motoras:");
         for (Motoristas motoristas : listarById) {
             System.out.println(motoristas.getNome());
+        }
+
+        List<Logs> listaLogs = null;
+        listaLogs = logsController.listAll();
+        System.out.println("Logs: ");
+        for (Logs log : listaLogs) {
+            System.out.println(log.getIdLog() + "");
         }
     }
 

@@ -5,10 +5,14 @@
  */
 package gui;
 
+import Controller.DestinosController;
+import Entidades.Destinos;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -22,74 +26,150 @@ public class cadDestinos extends javax.swing.JFrame {
      */
     public cadDestinos() {
         initComponents();
+        DestinosController destinosController;
+        destinosController = new DestinosController();
+        Destinos destinoBuscado;
+        destinoBuscado = new Destinos();
+
         setTitle("Cadastro de Destinos");
-        setSize(255, 360);
+        setSize(355, 320);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
+
         JLabel labelBusca = new JLabel("Informe o Nome");
-        labelBusca.setBounds(20, 10, 120, 20);
-        add(labelBusca);
-        
+        labelBusca.setBounds(70, 10, 120, 20);
+
         JTextField tfBusca = new JTextField();
-        tfBusca.setSize(110,25);
-        tfBusca.setLocation(20, 30);
-        add(tfBusca);
-        
+        tfBusca.setSize(110, 25);
+        tfBusca.setLocation(70, 30);
+
         JButton buttonBusca = new JButton("Buscar");
-        buttonBusca.setSize(90,30);
-        buttonBusca.setLocation(140, 27);
-        add(buttonBusca);
-        
+        buttonBusca.setSize(90, 30);
+        buttonBusca.setLocation(200, 27);
+
         JLabel labelNome = new JLabel("Nome");
         labelNome.setBounds(20, 60, 100, 20);
-        add(labelNome);
-        
+
         JTextField tfNome = new JTextField();
-        tfNome.setSize(210,25);
+        tfNome.setSize(210, 25);
         tfNome.setLocation(20, 80);
-        add(tfNome);
-        
+
         JLabel labelCEP = new JLabel("CEP");
         labelCEP.setBounds(20, 110, 100, 20);
-        add(labelCEP);
-        
+
         JTextField tfCEP = new JTextField();
-        tfCEP.setSize(100,25);
+        tfCEP.setSize(100, 25);
         tfCEP.setLocation(20, 130);
-        add(tfCEP);
-        
+
         JLabel labelEndereco = new JLabel("Endereço");
         labelEndereco.setBounds(20, 160, 100, 20);
-        add(labelEndereco);
-        
+
         JTextField tfEndereco = new JTextField();
-        tfEndereco.setSize(210,25);
+        tfEndereco.setSize(210, 25);
         tfEndereco.setLocation(20, 180);
-        add(tfEndereco);
-        
+
         JLabel labelNumero = new JLabel("Número");
         labelNumero.setBounds(20, 210, 100, 20);
-        add(labelNumero);
-        
+
         JTextField tfNumero = new JTextField();
-        tfNumero.setSize(80,25);
+        tfNumero.setSize(80, 25);
         tfNumero.setLocation(20, 230);
-        add(tfNumero);
-        
+
         JButton buttonSave = new JButton("Salvar");
-        buttonSave.setSize(100,30);
+        buttonSave.setSize(100, 30);
         buttonSave.setLocation(20, 270);
-        add(buttonSave);
-        
+        JButton buttonUpdate = new JButton("Alterar");
+        buttonUpdate.setSize(100, 30);
+        buttonUpdate.setLocation(240, 270);
+        add(buttonUpdate);
         JButton buttonCancel = new JButton("Cancelar");
-        buttonCancel.setSize(100,30);
+        buttonCancel.setSize(100, 30);
         buttonCancel.setLocation(130, 270);
         buttonCancel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
             }
         });
+
+        buttonUpdate.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String nome;
+                String cep;
+                String numero;
+                String endereco;
+                nome = tfNome.getText();
+                cep = tfCEP.getText();
+                numero = tfNumero.getText();
+                endereco = tfEndereco.getText();
+                if (nome.equals("") | cep.equals("") | numero.equals("") | endereco.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Preencha todos campos");
+                } else {
+                    try {
+                        destinosController.alterar(destinoBuscado.getIdDestino(), cep, endereco, nome, numero);
+                        JOptionPane.showMessageDialog(null, "Alterado");
+                    } catch (HeadlessException he) {
+                        JOptionPane.showMessageDialog(null, "Não foi possível alterar");
+                        System.out.println(he);
+                    }
+                }
+            }
+        });
+        buttonBusca.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String nome;
+                nome = tfBusca.getText();
+                try {
+                    Destinos destinos = destinosController.getByNome(nome);
+                    tfNome.setText(destinos.getNome());
+                    tfCEP.setText(destinos.getCep());
+                    tfEndereco.setText(destinos.getEndereco());
+                    tfNumero.setText(destinos.getNumero());
+                    destinoBuscado.setIdDestino(destinos.getIdDestino());
+                    JOptionPane.showMessageDialog(null, "Encontrado");
+
+                } catch (Exception ee) {
+                    JOptionPane.showMessageDialog(null, "Não encontrado Encontrado");
+                    System.out.println(ee);
+                }
+            }
+        });
+
+        buttonSave.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String nome;
+                String cep;
+                String numero;
+                String endereco;
+                nome = tfNome.getText();
+                cep = tfCEP.getText();
+                numero = tfNumero.getText();
+                endereco = tfEndereco.getText();
+                if (nome.equals("") | cep.equals("") | numero.equals("") | endereco.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Preencha todos campos");
+                } else {
+                    try {
+                        destinosController.cadastrar(cep, endereco, nome, numero);
+                        JOptionPane.showMessageDialog(null, "Cadastrado");
+                    } catch (HeadlessException he) {
+                        JOptionPane.showMessageDialog(null, "Não foi possível cadastrar");
+                        System.out.println(he);
+                    }
+                }
+            }
+        });
+
         add(buttonCancel);
+        add(labelBusca);
+        add(tfBusca);
+        add(buttonBusca);
+        add(labelNome);
+        add(tfNome);
+        add(labelCEP);
+        add(tfCEP);
+        add(tfEndereco);
+        add(labelEndereco);
+        add(labelNumero);
+        add(tfNumero);
+        add(buttonSave);
     }
 
     /**

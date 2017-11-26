@@ -31,7 +31,6 @@ public class DAOMotorista extends DAOGenerico<Motoristas> {
 
     public List<Motoristas> getByCPF(String cpf) {
         return em.createQuery("SELECT e FROM Motoristas e WHERE e.cpf = :cpf").setParameter("cpf", cpf).getResultList();
-        
     }
 
     public List<Motoristas> listByNome(String nome) {

@@ -16,8 +16,8 @@ import java.util.List;
  *
  * @author marco
  */
-public class DAOLogs extends DAOGenerico<Logs>{
-    
+public class DAOLogs extends DAOGenerico<Logs> {
+
     public DAOLogs() {
         super(Logs.class);
     }
@@ -33,5 +33,10 @@ public class DAOLogs extends DAOGenerico<Logs>{
     public List<Logs> listInOrderDestinos() {
         return em.createQuery("SELECT e FROM Logs e ORDER BY e.destinos").getResultList();
     }
-    
+
+    public List<Logs> listAll() {
+        return em.createQuery("SELECT e FROM Logs e").getResultList();
+
+    }
+
 }
