@@ -71,4 +71,14 @@ public class VeiculosController {
         }
         return lista;
     }
+
+    public Veiculos getByRFID(String rfid) {
+        try {
+            return daoVeiculos.getByRfid(rfid);
+
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
 }

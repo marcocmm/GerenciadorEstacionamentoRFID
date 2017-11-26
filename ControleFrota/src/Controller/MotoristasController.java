@@ -72,4 +72,13 @@ public class MotoristasController {
         }
         return lista;
     }
+
+    public Motoristas getByRFID(String rfid) {
+        try {
+            return daomot.getByRfid(rfid);
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
 }

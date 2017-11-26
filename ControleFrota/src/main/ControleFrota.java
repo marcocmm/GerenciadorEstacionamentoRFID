@@ -23,15 +23,13 @@ public class ControleFrota {
         menuPrincipal mp = new menuPrincipal();
         mp.setVisible(true);
         // TODO code application logic here
-        AcessaArduino acessaArduino;
+//        AcessaArduino acessaArduino;
         try {
 
-            acessaArduino = new AcessaArduino();
-            System.out.println("Porta: " + acessaArduino.getPortaSelecionada() + "");
 
-            SerialPortEvent serialPortEvent;
-            serialPortEvent = new SerialPortEvent(acessaArduino.getSerialPort(), 1, true, true);
-            acessaArduino.setDataToArduino(acessaArduino.getSerialPort(), "negado");
+//            SerialPortEvent serialPortEvent;
+//            serialPortEvent = new SerialPortEvent(acessaArduino.getSerialPort(), 1, true, true);
+//            acessaArduino.setDataToArduino(acessaArduino.getSerialPort(), "negado");
 
            
 

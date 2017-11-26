@@ -6,6 +6,7 @@
 package DAO;
 
 import static DAO.DAOGenerico.em;
+import Entidades.Logs;
 import Entidades.Veiculos;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,21 @@ public class DAOVeiculos extends DAOGenerico<Veiculos> {
         return em.createQuery("SELECT e FROM Veiculos e WHERE e.placa = :placas").setParameter("placas", placas).getResultList();
     }
 
+    public Veiculos getByRfid(String rfid) {
+        List<Veiculos> lista = listAll();
+        for (Veiculos veiculo : lista) {
+            if (veiculo.getRFIDVeiculo().equals(rfid)) {
+                return veiculo;
+            }
+        }
+        return null;
+    }
+
+    public List<Veiculos> listAll() {
+        return em.createQuery("SELECT e FROM Veiculos e").getResultList();
+
+    }
+
     public List<Veiculos> listById(int id) {
         return em.createQuery("SELECT e FROM Veiculos e WHERE e.idVeiculo = :id").setParameter("id", id).getResultList();
     }
@@ -39,7 +55,7 @@ public class DAOVeiculos extends DAOGenerico<Veiculos> {
     public List<Veiculos> getByPlaca(String placa) {
         return em.createQuery("SELECT e FROM Veiculos e WHERE e.placa = :placa").setParameter("pĺaca", placa).getResultList();
     }
-    
+
     public List<String> listInOrderNomeStrings(String qualOrdem) {
         List<Veiculos> lf;
         if (qualOrdem.equals("id")) {

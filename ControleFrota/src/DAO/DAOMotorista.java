@@ -5,7 +5,9 @@
  */
 package DAO;
 
+import static DAO.DAOGenerico.em;
 import Entidades.Motoristas;
+import Entidades.Veiculos;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Query;
@@ -31,6 +33,22 @@ public class DAOMotorista extends DAOGenerico<Motoristas> {
 
     public List<Motoristas> getByCPF(String cpf) {
         return em.createQuery("SELECT e FROM Motoristas e WHERE e.cpf = :cpf").setParameter("cpf", cpf).getResultList();
+    }
+
+    public Motoristas getByRfid(String rfid) {
+        List<Motoristas> lista;
+        lista = listAll();
+        for (Motoristas motorista : lista) {
+            if (motorista.getRFIDMotorista().equals(rfid)) {
+                return motorista;
+            }
+        }
+        return null;
+    }
+
+    public List<Motoristas> listAll() {
+        return em.createQuery("SELECT e FROM Motoristas e").getResultList();
+
     }
 
     public List<Motoristas> listByNome(String nome) {
@@ -63,4 +81,5 @@ public class DAOMotorista extends DAOGenerico<Motoristas> {
         }
         return ls;
     }
+
 }
