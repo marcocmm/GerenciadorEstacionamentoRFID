@@ -70,6 +70,37 @@ public class newLog extends javax.swing.JFrame {
         tfNome.setLocation(20, 80);
         add(tfNome);
 
+        JLabel labelCEP = new JLabel("CEP");
+        labelCEP.setBounds(20, 110, 100, 20);
+        add(labelCEP);
+
+        JTextField tfCEP = new JTextField();
+        tfCEP.setSize(100, 25);
+        tfCEP.setLocation(20, 130);
+        add(tfCEP);
+
+        JLabel labelEndereco = new JLabel("Endereço");
+        labelEndereco.setBounds(20, 160, 100, 20);
+        add(labelEndereco);
+
+        JTextField tfEndereco = new JTextField();
+        tfEndereco.setSize(210, 25);
+        tfEndereco.setLocation(20, 180);
+        add(tfEndereco);
+
+        JLabel labelNumero = new JLabel("Número");
+        labelNumero.setBounds(20, 210, 100, 20);
+        add(labelNumero);
+
+        JTextField tfNumero = new JTextField();
+        tfNumero.setSize(80, 25);
+        tfNumero.setLocation(20, 230);
+        add(tfNumero);
+
+        tfBusca.setSize(110, 25);
+        tfBusca.setLocation(70, 30);
+        add(tfBusca);
+
         DestinosController destinosController;
         destinosController = new DestinosController();
         Destinos destinoBuscado;
@@ -85,7 +116,9 @@ public class newLog extends javax.swing.JFrame {
                     tfNome.setText(destinos.getNome());
                     destinoBuscado.setIdDestino(destinos.getIdDestino());
                     destinoThread = destinos;
-
+                    tfCEP.setText(destinos.getCep());
+                    tfEndereco.setText(destinos.getEndereco());
+                    tfNumero.setText(destinos.getNumero());
                     JOptionPane.showMessageDialog(null, "Encontrado");
 
                 } catch (Exception ee) {
@@ -114,9 +147,12 @@ public class newLog extends javax.swing.JFrame {
                 try {
                     while (0 == 0) {
                         data = acessaArduino.getDadosArduino();
+                        System.out.println("Data: " + data);
                         if (primeiroRfid.equals("")) {
                             primeiroRfid = data;
-                            System.out.println("Primeiro RFID");
+                            if (!data.equals("")) {
+                                System.out.println("Primeiro RFID");
+                            }
                         } else if (segundoRfid.equals("")) {
                             if (!primeiroRfid.equals(data)) {
                                 segundoRfid = data;
@@ -140,13 +176,16 @@ public class newLog extends javax.swing.JFrame {
                             SerialPortEvent serialPortEvent;
                             serialPortEvent = new SerialPortEvent(acessaArduino.getSerialPort(), 1, true, true);
                             if (motorista == null || veiculo == null) {
-                                acessaArduino.setDataToArduino(acessaArduino.getSerialPort(), "n");
+                                acessaArduino.setDataToArduino(acessaArduino.getSerialPort(), "0");
+                                System.out.println("Sucesso Negado ----------");
+                            } else {
+
+                                logsController.cadastrar(date, destinoThread, motorista, veiculo);
+                                primeiroRfid = "";
+                                segundoRfid = "";
+                                acessaArduino.setDataToArduino(acessaArduino.getSerialPort(), "1");
+                                System.out.println("Sucesso ----------");
                             }
-                            logsController.cadastrar(date, destinoThread, motorista, veiculo);
-                            primeiroRfid = "";
-                            segundoRfid = "";
-                            acessaArduino.setDataToArduino(acessaArduino.getSerialPort(), "l");
-                            System.out.println("Sucesso ----------");
 
                             Thread.interrupted();
                         }
