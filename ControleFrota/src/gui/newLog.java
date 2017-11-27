@@ -13,7 +13,7 @@ import Controller.VeiculosController;
 import Entidades.Destinos;
 import Entidades.Motoristas;
 import Entidades.Veiculos;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
+import gnu.io.SerialPortEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -137,10 +137,17 @@ public class newLog extends javax.swing.JFrame {
                             } else {
                                 motorista = motoristasController.getByRFID(segundoRfid);
                             }
+                            SerialPortEvent serialPortEvent;
+                            serialPortEvent = new SerialPortEvent(acessaArduino.getSerialPort(), 1, true, true);
+                            if (motorista == null || veiculo == null) {
+                                acessaArduino.setDataToArduino(acessaArduino.getSerialPort(), "n");
+                            }
                             logsController.cadastrar(date, destinoThread, motorista, veiculo);
                             primeiroRfid = "";
                             segundoRfid = "";
+                            acessaArduino.setDataToArduino(acessaArduino.getSerialPort(), "l");
                             System.out.println("Sucesso ----------");
+
                             Thread.interrupted();
                         }
                         Thread.sleep(200);

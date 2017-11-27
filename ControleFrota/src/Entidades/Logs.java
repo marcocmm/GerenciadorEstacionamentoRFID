@@ -37,22 +37,24 @@ public class Logs implements Serializable {
     @Basic(optional = false)
     @Column(name = "idLog")
     private Integer idLog;
+    @Basic(optional = false)
     @Column(name = "Data")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date data;
     @JoinColumn(name = "Destinos_idDestino", referencedColumnName = "idDestino")
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Destinos destinos;
     @JoinColumn(name = "Motoristas_idMotorista", referencedColumnName = "idMotorista")
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Motoristas motoristas;
     @JoinColumn(name = "Veiculos_idVeiculo", referencedColumnName = "idVeiculo")
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Veiculos veiculos;
 
     public Logs() {
     }
 
+ 
     public Logs(Integer idLog) {
         this.idLog = idLog;
     }
@@ -75,7 +77,6 @@ public class Logs implements Serializable {
         this.motoristas = motoristas;
         this.veiculos = veiculos;
     }
-    
     
 
     public Integer getIdLog() {

@@ -8,6 +8,7 @@ package Entidades;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,15 +35,19 @@ public class Veiculos implements Serializable {
     @Basic(optional = false)
     @Column(name = "idVeiculo")
     private Integer idVeiculo;
-    @Column(name = "Marca")
-    private String marca;
-    @Column(name = "Modelo")
-    private String modelo;
+    @Basic(optional = false)
     @Column(name = "Placa")
     private String placa;
+    @Basic(optional = false)
+    @Column(name = "Marca")
+    private String marca;
+    @Basic(optional = false)
+    @Column(name = "Modelo")
+    private String modelo;
+    @Basic(optional = false)
     @Column(name = "RFIDVeiculo")
     private String rFIDVeiculo;
-    @OneToMany(mappedBy = "veiculos")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "veiculos")
     private List<Logs> logsList;
 
     public Veiculos() {
@@ -67,13 +72,20 @@ public class Veiculos implements Serializable {
         this.rFIDVeiculo = rFIDVeiculo;
     }
 
-//    }
     public Integer getIdVeiculo() {
         return idVeiculo;
     }
 
     public void setIdVeiculo(Integer idVeiculo) {
         this.idVeiculo = idVeiculo;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
     }
 
     public String getMarca() {
@@ -90,14 +102,6 @@ public class Veiculos implements Serializable {
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
-    }
-
-    public String getPlaca() {
-        return placa;
-    }
-
-    public void setPlaca(String placa) {
-        this.placa = placa;
     }
 
     public String getRFIDVeiculo() {

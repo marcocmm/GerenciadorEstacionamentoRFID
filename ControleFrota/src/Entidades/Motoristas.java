@@ -8,6 +8,7 @@ package Entidades;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,17 +35,22 @@ public class Motoristas implements Serializable {
     @Basic(optional = false)
     @Column(name = "idMotorista")
     private Integer idMotorista;
-    @Column(name = "CPF")
-    private String cpf;
+    @Basic(optional = false)
     @Column(name = "Nome")
     private String nome;
+    @Basic(optional = false)
+    @Column(name = "CPF")
+    private String cpf;
+    @Basic(optional = false)
     @Column(name = "RFIDMotorista")
     private String rFIDMotorista;
-    @OneToMany(mappedBy = "motoristas")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "motoristas")
     private List<Logs> logsList;
 
     public Motoristas() {
     }
+
+  
 
     public Motoristas(Integer idMotorista) {
         this.idMotorista = idMotorista;
@@ -78,20 +84,20 @@ public class Motoristas implements Serializable {
         this.idMotorista = idMotorista;
     }
 
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getRFIDMotorista() {

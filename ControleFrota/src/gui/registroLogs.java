@@ -32,10 +32,10 @@ public class registroLogs extends javax.swing.JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         listLogs = logsController.listAll();
-        String[] row = new String[5];
         String[][] matrix = new String[listLogs.size()][5];
         Logs log;
         for (int i = 0; i < listLogs.size(); i++) {
+            String[] row = new String[5];
             log = listLogs.get(i);
             row[0] = log.getMotoristas().getNome();
             row[1] = log.getVeiculos().getModelo();
