@@ -41,8 +41,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         
         cadMotorista cm = new cadMotorista();
         cadDestinos cd = new cadDestinos();
-        cadVeiculo cv = new cadVeiculo();        
-        searchLog sl = new searchLog();
+        cadVeiculo cv = new cadVeiculo();
         // Cria uma barra de menu para o JFrame
         JMenuBar menuBar = new JMenuBar();
         
@@ -88,20 +87,13 @@ public class menuPrincipal extends javax.swing.JFrame {
                 rl.setVisible(true);
             }
         });
-        JMenuItem searchLogs = new JMenuItem("Search Logs");
-        searchLogs.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                sl.setVisible(true);
-            }
-        });
-        
+              
         
         cadMenu.add(cadMot);
         cadMenu.add(cadVei);
         cadMenu.add(cadDest);
         cadMenu.add(neLog);
         consMenu.add(consLogs); 
-        consMenu.add(searchLogs);
        
         Icon iconeMoto = new ImageIcon("src/gui/img/btnMoto.png");
         JButton buttonMoto = new JButton(iconeMoto);
@@ -139,7 +131,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         });
         add(buttonDest);
         
-        Icon iconeLog = new ImageIcon("src/gui/img/btnLogs.png");
+        Icon iconeLog = new ImageIcon("src/gui/img/btnSearchLogs.png");
         JButton buttonLog = new JButton(iconeLog);
         buttonLog.setBorder(null);
         buttonLog.setSize(70,70);
@@ -152,19 +144,8 @@ public class menuPrincipal extends javax.swing.JFrame {
         });
         add(buttonLog);
         
-        Icon iconeSearchLogs = new ImageIcon("src/gui/img/btnSearchLogs.png");
-        JButton buttonSearchLog = new JButton(iconeSearchLogs);
-        buttonSearchLog.setBorder(null);
-        buttonSearchLog.setSize(70,70);
-        buttonSearchLog.setLocation(325, 15);
-        buttonSearchLog.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                sl.setVisible(true);
-            }
-        });
-        add(buttonSearchLog);
-        
-        JButton buttonNewLog = new JButton("");
+        Icon iconeNewLog = new ImageIcon("src/gui/img/btnLogs.png");
+        JButton buttonNewLog = new JButton(iconeNewLog);
         buttonNewLog.setBorder(null);
         buttonNewLog.setSize(70,70);
         buttonNewLog.setLocation(245, 15);
